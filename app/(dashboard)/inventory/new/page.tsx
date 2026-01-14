@@ -46,7 +46,6 @@ export default function NewPropertyPage() {
         source: formData.get('source') as string || null,
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error } = await (supabase.from('properties') as any).insert(propertyData)
 
       if (error) throw error

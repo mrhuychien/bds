@@ -29,12 +29,14 @@ export default function EditPropertyPage({ params }: EditPropertyPageProps) {
         return
       }
 
-      const { data, error } = await supabase
+      const { data: propertyData, error } = await supabase
         .from('properties')
         .select('*')
         .eq('id', params.id)
         .eq('owner_id', user.id)
         .single()
+
+      const data = propertyData as Property | null
 
       if (error || !data) {
         router.push('/inventory')
@@ -91,7 +93,6 @@ export default function EditPropertyPage({ params }: EditPropertyPageProps) {
         is_public: formData.get('is_public') === 'on',
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error } = await (supabase.from('properties') as any)
         .update(updateData)
         .eq('id', params.id)

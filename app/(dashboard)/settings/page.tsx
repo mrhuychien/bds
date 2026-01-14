@@ -44,7 +44,6 @@ export default function SettingsPage() {
     const supabase = createClient()
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error } = await (supabase.from('profiles') as any)
         .update({
           full_name: formData.get('full_name') as string,

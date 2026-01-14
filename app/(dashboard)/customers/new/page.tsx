@@ -68,7 +68,6 @@ export default function NewCustomerPage() {
         demand: demand,
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error } = await (supabase.from('customers') as any).insert(customerData)
 
       if (error) throw error

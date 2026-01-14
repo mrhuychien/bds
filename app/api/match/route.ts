@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import type { Property, Customer } from '@/types/database'
+
+interface CustomerDemand {
+  property_types?: string[]
+  districts?: string[]
+  budget_min?: number
+  budget_max?: number
+  min_area?: number
+  bedrooms_min?: number
+}
 
 // Match properties for a customer based on their demand
 export async function GET(request: NextRequest) {
@@ -25,12 +35,14 @@ export async function GET(request: NextRequest) {
     }
 
     // Get customer demand
-    const { data: customer, error: customerError } = await supabase
+    const { data: customerData, error: customerError } = await supabase
       .from('customers')
       .select('demand')
       .eq('id', customerId)
       .eq('owner_id', user.id)
       .single()
+
+    const customer = customerData as { demand: CustomerDemand } | null
 
     if (customerError || !customer) {
       return NextResponse.json(
@@ -84,7 +96,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Execute query
-    const { data: properties, error } = await query
+    const { data: propertiesData, error } = await query
       .order('created_at', { ascending: false })
       .limit(20)
 
@@ -92,8 +104,10 @@ export async function GET(request: NextRequest) {
       throw error
     }
 
+    const properties = (propertiesData || []) as Property[]
+
     // Calculate match score for each property
-    const scoredProperties = properties.map((property) => {
+    const scoredProperties = properties.map((property: Property) => {
       let score = 0
       let maxScore = 0
 
@@ -188,12 +202,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Get property
-    const { data: property, error: propertyError } = await supabase
+    const { data: propertyData, error: propertyError } = await supabase
       .from('properties')
       .select('*')
       .eq('id', propertyId)
       .eq('owner_id', user.id)
       .single()
+
+    const property = propertyData as Property | null
 
     if (propertyError || !property) {
       return NextResponse.json(
@@ -203,7 +219,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get customers with buying intent
-    const { data: customers, error } = await supabase
+    const { data: customersData, error } = await supabase
       .from('customers')
       .select('*')
       .eq('owner_id', user.id)
@@ -214,8 +230,10 @@ export async function POST(request: NextRequest) {
       throw error
     }
 
+    const customers = (customersData || []) as Customer[]
+
     // Score customers based on property match
-    const scoredCustomers = customers.map((customer) => {
+    const scoredCustomers = customers.map((customer: Customer) => {
       const demand = customer.demand as {
         property_types?: string[]
         districts?: string[]

@@ -120,8 +120,8 @@ Yêu cầu:
     const description = data.choices[0]?.message?.content || ''
 
     // Save to database
-    await supabase
-      .from('properties')
+    await (supabase
+      .from('properties') as any)
       .update({ ai_description: description })
       .eq('id', propertyId)
 

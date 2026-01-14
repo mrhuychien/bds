@@ -1,5 +1,5 @@
-'use client'
 // @ts-nocheck - Supabase SSR type inference workaround
+'use client'
 
 import useSWR from 'swr'
 import { createClient } from '@/lib/supabase/client'

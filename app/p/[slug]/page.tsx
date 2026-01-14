@@ -9,6 +9,21 @@ import {
   PropertyFeatures,
   AgentFooter,
 } from '@/components/microsite'
+import type { Property } from '@/types/database'
+
+interface AgentProfile {
+  full_name: string
+  phone: string
+  avatar_url: string | null
+  company_name: string | null
+  title: string
+  zalo_link: string | null
+  facebook_link: string | null
+}
+
+interface PropertyWithProfile extends Property {
+  profiles: AgentProfile
+}
 
 interface MicrositePageProps {
   params: { slug: string }
@@ -17,7 +32,7 @@ interface MicrositePageProps {
 export default async function MicrositePage({ params }: MicrositePageProps) {
   const supabase = createClient()
 
-  const { data: property } = await supabase
+  const { data: propertyData } = await supabase
     .from('properties')
     .select(`
       *,
@@ -34,6 +49,8 @@ export default async function MicrositePage({ params }: MicrositePageProps) {
     .eq('slug', params.slug)
     .eq('is_public', true)
     .single()
+
+  const property = propertyData as PropertyWithProfile | null
 
   if (!property) {
     notFound()
@@ -57,7 +74,7 @@ export default async function MicrositePage({ params }: MicrositePageProps) {
       <MicrositeHero
         thumbnailUrl={property.thumbnail_url}
         title={property.title}
-        images={property.images}
+        images={property.images ?? undefined}
       />
 
       {/* Content */}
