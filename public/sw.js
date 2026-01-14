@@ -4,8 +4,8 @@ const OFFLINE_URL = '/offline.html'
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  '/icons/icon.svg',
+  '/icons/icon-maskable.svg',
 ]
 
 // Install event
@@ -92,8 +92,8 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: data.body || 'Bạn có thông báo mới',
-    icon: '/icons/icon-192.png',
-    badge: '/icons/icon-192.png',
+    icon: '/icons/icon.svg',
+    badge: '/icons/icon.svg',
     vibrate: [100, 50, 100],
     data: {
       url: data.url || '/',
