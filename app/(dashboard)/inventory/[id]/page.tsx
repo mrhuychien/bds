@@ -37,274 +37,292 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
   const listingType = property.listing_type as keyof typeof LISTING_TYPES
 
   const statusColors: Record<string, string> = {
-    available: 'bg-green-100 text-green-700',
-    deposited: 'bg-yellow-100 text-yellow-700',
-    sold: 'bg-gray-100 text-gray-700',
-    rented: 'bg-blue-100 text-blue-700',
+    available: 'bg-emerald-500',
+    deposited: 'bg-yellow-500',
+    sold: 'bg-red-500',
+    rented: 'bg-blue-500',
   }
 
   return (
-    <div className="pb-20">
+    <div className="pb-28">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background border-b">
-        <div className="flex items-center h-14 px-4 gap-3">
-          <Link href="/inventory" className="p-1 -ml-1">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </Link>
-          <h1 className="flex-1 font-semibold truncate">Chi tiết BĐS</h1>
-          <Link
-            href={`/inventory/${property.id}/edit`}
-            className="p-2 text-primary"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-          </Link>
+      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="flex items-center h-14 px-4 justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/inventory" className="size-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors">
+              <span className="material-symbols-outlined">arrow_back_ios_new</span>
+            </Link>
+            <h1 className="font-bold text-lg">Chi tiết BĐS</h1>
+          </div>
+          <div className="flex gap-2">
+            <button className="size-10 flex items-center justify-center rounded-full bg-muted">
+              <span className="material-symbols-outlined">share</span>
+            </button>
+            <Link
+              href={`/inventory/${property.id}/edit`}
+              className="size-10 flex items-center justify-center rounded-full bg-primary/10 text-primary"
+            >
+              <span className="material-symbols-outlined">edit</span>
+            </Link>
+          </div>
         </div>
       </header>
 
       {/* Hero Image */}
-      <div className="aspect-video bg-muted relative">
+      <div className="relative aspect-[4/3] mx-4 mt-4 rounded-2xl overflow-hidden shadow-xl">
         {property.thumbnail_url ? (
-          <img
-            src={property.thumbnail_url}
-            alt={property.title}
-            className="w-full h-full object-cover"
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%), url('${property.thumbnail_url}')`
+            }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-            <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+          <div className="absolute inset-0 bg-muted flex items-center justify-center">
+            <span className="material-symbols-outlined text-6xl text-muted-foreground">image</span>
           </div>
         )}
+
+        {/* Price Badge */}
+        <div className="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-xl font-bold text-lg shadow-lg flex items-center gap-2">
+          <span className="material-symbols-outlined text-sm">payments</span>
+          {formatPrice(property.price)}
+        </div>
+
         {/* Status Badge */}
-        <span className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[status]}`}>
+        <div className={`absolute top-4 right-4 text-white px-3 py-1.5 rounded-lg font-semibold text-xs flex items-center gap-1 shadow-md ${statusColors[status] || 'bg-gray-500'}`}>
+          <span className="size-2 bg-white rounded-full animate-pulse"></span>
           {PROPERTY_STATUS[status]}
-        </span>
+        </div>
+
+        {/* Image Count */}
+        {property.images && property.images.length > 1 && (
+          <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-sm flex items-center gap-1">
+            <span className="material-symbols-outlined text-sm">photo_library</span>
+            {property.images.length} ảnh
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-6">
-        {/* Title & Price */}
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded">
-              {PROPERTY_TYPES[propertyType]}
+      <div className="px-4 py-6 space-y-6">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+            {PROPERTY_TYPES[propertyType]}
+          </span>
+          <span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold">
+            {LISTING_TYPES[listingType]}
+          </span>
+          {property.is_negotiable && (
+            <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold">
+              Thương lượng
             </span>
-            <span className="px-2 py-0.5 bg-muted text-xs rounded">
-              {LISTING_TYPES[listingType]}
-            </span>
-          </div>
-          <h2 className="text-xl font-bold">{property.title}</h2>
-          <p className="text-2xl font-bold text-primary mt-2">
-            {formatPrice(property.price)}
-            {property.is_negotiable && (
-              <span className="text-sm font-normal text-muted-foreground ml-2">(thương lượng)</span>
-            )}
-          </p>
+          )}
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-2">
-          {property.area && (
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <p className="text-base font-semibold">{property.area}</p>
-              <p className="text-xs text-muted-foreground">m²</p>
-            </div>
-          )}
-          {property.bedrooms && (
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <p className="text-base font-semibold">{property.bedrooms}</p>
-              <p className="text-xs text-muted-foreground">PN</p>
-            </div>
-          )}
-          {property.bathrooms && (
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <p className="text-base font-semibold">{property.bathrooms}</p>
-              <p className="text-xs text-muted-foreground">WC</p>
-            </div>
-          )}
-          {property.floors && (
-            <div className="text-center p-3 bg-muted rounded-lg">
-              <p className="text-base font-semibold">{property.floors}</p>
-              <p className="text-xs text-muted-foreground">Tầng</p>
-            </div>
-          )}
-        </div>
+        {/* Title */}
+        <h2 className="text-2xl font-bold leading-tight">{property.title}</h2>
 
         {/* Location */}
         {(property.district || property.street) && (
-          <div className="space-y-2">
-            <h3 className="font-semibold flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Vị trí
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              {[property.street, property.ward, property.district, property.province]
-                .filter(Boolean)
-                .join(', ')}
-            </p>
-            {property.address_detail && (
-              <p className="text-sm bg-yellow-50 text-yellow-800 p-2 rounded">
-                <span className="font-medium">Địa chỉ chi tiết (riêng tư):</span> {property.address_detail}
-              </p>
-            )}
+          <div className="flex items-center text-muted-foreground text-sm">
+            <span className="material-symbols-outlined text-base mr-1">location_on</span>
+            {[property.street, property.ward, property.district, property.province]
+              .filter(Boolean)
+              .join(', ')}
           </div>
         )}
 
-        {/* Details */}
-        <div className="space-y-2">
-          <h3 className="font-semibold">Thông tin chi tiết</h3>
-          <div className="bg-card border rounded-lg divide-y text-sm">
+        {/* Quick Stats */}
+        <div className="grid grid-cols-4 gap-3">
+          {property.area && (
+            <div className="bg-card p-3 rounded-xl border border-border shadow-sm text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Diện tích</p>
+              <p className="font-bold">{property.area}m²</p>
+            </div>
+          )}
+          {property.bedrooms && (
+            <div className="bg-card p-3 rounded-xl border border-border shadow-sm text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Phòng ngủ</p>
+              <p className="font-bold">{property.bedrooms}</p>
+            </div>
+          )}
+          {property.bathrooms && (
+            <div className="bg-card p-3 rounded-xl border border-border shadow-sm text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Phòng tắm</p>
+              <p className="font-bold">{property.bathrooms}</p>
+            </div>
+          )}
+          {property.floors && (
+            <div className="bg-card p-3 rounded-xl border border-border shadow-sm text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Số tầng</p>
+              <p className="font-bold">{property.floors}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Private Address */}
+        {property.address_detail && (
+          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="material-symbols-outlined text-amber-600 text-lg">lock</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-600">Địa chỉ chi tiết (riêng tư)</span>
+            </div>
+            <p className="text-sm text-amber-800 dark:text-amber-200">{property.address_detail}</p>
+          </div>
+        )}
+
+        {/* Details Card */}
+        <section className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+          <div className="p-4 border-b border-border">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Thông tin chi tiết</h3>
+          </div>
+          <div className="divide-y divide-border">
             {property.frontage && (
-              <div className="p-3 flex justify-between">
-                <span className="text-muted-foreground">Mặt tiền</span>
-                <span>{property.frontage}m</span>
+              <div className="px-4 py-3 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">Mặt tiền</span>
+                <span className="text-sm font-semibold">{property.frontage}m</span>
               </div>
             )}
             {direction && (
-              <div className="p-3 flex justify-between">
-                <span className="text-muted-foreground">Hướng nhà</span>
-                <span>{DIRECTIONS[direction]}</span>
+              <div className="px-4 py-3 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">Hướng nhà</span>
+                <span className="text-sm font-semibold">{DIRECTIONS[direction]}</span>
               </div>
             )}
             {legal && (
-              <div className="p-3 flex justify-between">
-                <span className="text-muted-foreground">Pháp lý</span>
-                <span>{LEGAL_STATUS[legal]}</span>
+              <div className="px-4 py-3 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">Pháp lý</span>
+                <span className="text-sm font-semibold">{LEGAL_STATUS[legal]}</span>
               </div>
             )}
             {property.source && (
-              <div className="p-3 flex justify-between">
-                <span className="text-muted-foreground">Nguồn hàng</span>
-                <span>{property.source}</span>
+              <div className="px-4 py-3 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">Nguồn hàng</span>
+                <span className="text-sm font-semibold">{property.source}</span>
               </div>
             )}
             {property.commission_rate && (
-              <div className="p-3 flex justify-between">
-                <span className="text-muted-foreground">Hoa hồng</span>
-                <span>{property.commission_rate}%</span>
+              <div className="px-4 py-3 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">Hoa hồng</span>
+                <span className="text-sm font-semibold text-accent">{property.commission_rate}%</span>
               </div>
             )}
-            <div className="p-3 flex justify-between">
-              <span className="text-muted-foreground">Ngày tạo</span>
-              <span>{formatDate(property.created_at)}</span>
+            <div className="px-4 py-3 flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Ngày tạo</span>
+              <span className="text-sm font-semibold">{formatDate(property.created_at)}</span>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Description */}
         {property.description && (
-          <div className="space-y-2">
-            <h3 className="font-semibold">Mô tả</h3>
-            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+          <section>
+            <h3 className="text-lg font-bold mb-3">Mô tả chi tiết</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-wrap">
               {property.description}
             </p>
-          </div>
+          </section>
         )}
 
         {/* AI Description */}
         {property.ai_description && (
-          <div className="space-y-2">
-            <h3 className="font-semibold flex items-center gap-2">
-              <svg className="w-4 h-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-              Mô tả AI
-            </h3>
-            <p className="text-sm text-muted-foreground whitespace-pre-wrap bg-purple-50 p-3 rounded-lg">
+          <section className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-4 border border-indigo-100 dark:border-indigo-800">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="material-symbols-outlined text-indigo-600">auto_awesome</span>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-600">Mô tả AI</h3>
+            </div>
+            <p className="text-sm text-indigo-800 dark:text-indigo-200 leading-relaxed whitespace-pre-wrap">
               {property.ai_description}
             </p>
-          </div>
+          </section>
         )}
 
         {/* Features */}
         {property.features && property.features.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold">Tiện ích & Đặc điểm</h3>
+          <section>
+            <h3 className="text-lg font-bold mb-3">Tiện ích & Đặc điểm</h3>
             <div className="flex flex-wrap gap-2">
               {property.features.map((feature, index) => (
-                <span key={index} className="px-2.5 py-1 bg-muted text-sm rounded-full">
+                <span key={index} className="px-3 py-1.5 bg-muted text-sm rounded-full font-medium">
                   {feature}
                 </span>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
         {/* Private Notes */}
         {property.notes && (
-          <div className="space-y-2">
-            <h3 className="font-semibold flex items-center gap-2 text-orange-600">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              Ghi chú riêng tư
-            </h3>
-            <p className="text-sm bg-orange-50 text-orange-800 p-3 rounded-lg">
-              {property.notes}
-            </p>
-          </div>
+          <section className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="material-symbols-outlined text-orange-600">lock</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-orange-600">Ghi chú riêng tư</span>
+            </div>
+            <p className="text-sm text-orange-800 dark:text-orange-200">{property.notes}</p>
+          </section>
         )}
 
         {/* Microsite Stats */}
-        <div className="space-y-2">
-          <h3 className="font-semibold">Microsite</h3>
-          <div className="bg-card border rounded-lg p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div>
-                <p className="text-sm text-muted-foreground">Trạng thái</p>
-                <p className="font-medium">
-                  {property.is_public ? (
-                    <span className="text-green-600">Đã công khai</span>
-                  ) : (
-                    <span className="text-gray-500">Chưa công khai</span>
-                  )}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm text-muted-foreground">Lượt xem</p>
-                <p className="font-medium">{property.microsite_views || 0}</p>
+        <section className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+          <div className="p-4 border-b border-border flex items-center justify-between">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Microsite</h3>
+            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+              property.is_public
+                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
+                : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
+            }`}>
+              {property.is_public ? 'Đã công khai' : 'Chưa công khai'}
+            </span>
+          </div>
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-primary">visibility</span>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{property.microsite_views || 0}</p>
+                  <p className="text-xs text-muted-foreground">Lượt xem</p>
+                </div>
               </div>
             </div>
             {property.is_public && property.slug && (
-              <div className="pt-3 border-t">
+              <div className="bg-muted rounded-xl p-3">
                 <p className="text-xs text-muted-foreground mb-1">Link chia sẻ:</p>
-                <code className="text-xs bg-muted p-2 rounded block break-all">
+                <code className="text-xs break-all">
                   {process.env.NEXT_PUBLIC_APP_URL || ''}/p/{property.slug}
                 </code>
               </div>
             )}
           </div>
-        </div>
+        </section>
       </div>
 
       {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background border-t p-4 safe-bottom">
-        <div className="container max-w-lg mx-auto flex gap-3">
+      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-t border-border p-4 pb-8">
+        <div className="max-w-lg mx-auto flex gap-3">
           <Link
             href={`/inventory/${property.id}/edit`}
-            className="flex-1 py-2.5 px-4 border rounded-md text-sm font-medium text-center hover:bg-muted"
+            className="flex-1 h-12 rounded-xl border-2 border-border font-bold flex items-center justify-center gap-2 hover:bg-muted transition-colors"
           >
+            <span className="material-symbols-outlined text-lg">edit</span>
             Chỉnh sửa
           </Link>
           {property.is_public ? (
-            <button className="flex-1 py-2.5 px-4 bg-primary text-primary-foreground rounded-md text-sm font-medium">
+            <button className="flex-[2] h-12 rounded-xl bg-accent hover:bg-accent/90 text-white font-bold shadow-lg shadow-accent/20 flex items-center justify-center gap-2 transition-all active:scale-95">
+              <span className="material-symbols-outlined text-lg">share</span>
               Chia sẻ
             </button>
           ) : (
-            <button className="flex-1 py-2.5 px-4 bg-primary text-primary-foreground rounded-md text-sm font-medium">
+            <button className="flex-[2] h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all active:scale-95">
+              <span className="material-symbols-outlined text-lg">public</span>
               Công khai
             </button>
           )}
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
