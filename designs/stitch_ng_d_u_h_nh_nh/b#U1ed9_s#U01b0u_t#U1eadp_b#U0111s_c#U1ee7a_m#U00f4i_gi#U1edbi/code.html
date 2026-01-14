@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Property Collection</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a3c60",
+                        "accent": "#E76F51",
+                        "background-light": "#fcfcfc",
+                        "background-dark": "#15283d",
+                        "trust-light": "#E8F5E9",
+                        "trust-dark": "#2E7D32",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px rgba(0, 0, 0, 0.05)",
+                        "glow": "0 10px 25px -5px rgba(231, 111, 81, 0.4)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#121417] antialiased selection:bg-primary selection:text-white">
+<div class="relative min-h-screen w-full flex flex-col mx-auto max-w-md bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-40 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-all duration-300">
+<div class="flex items-center justify-between px-4 py-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[#1a3c60] dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<div class="flex gap-2">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[#1a3c60] dark:text-white" style="font-size: 24px;">ios_share</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 pb-32">
+<!-- Agent Profile Section -->
+<section class="px-5 pt-4 pb-6">
+<div class="flex flex-col items-center text-center">
+<div class="relative group cursor-pointer">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-primary to-blue-300">
+<img alt="Agent Avatar" class="w-full h-full object-cover rounded-full border-2 border-white dark:border-background-dark shadow-sm" data-alt="Professional portrait of real estate agent Nguyen Van Tuan smiling confidently in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh-NCmsHZl-bzEquF2gLxBc7HRCaqY28boHRGiOlmQIveZywyALnhPB9ULzdEDZdxkITFtNVX3Ui2qiUX01XgbuILnp7BNGnFb370Kvxc9WP1ch6PoywViHOLgb2_wVM_85XXncNXZBnvKBN9KsuwllLinLWRw_G5W_XN2HZggerYMnKbQJLmDpXjkRl7poMoilsanG0yOGFJeFW1Ig5SuNZ2RCnVLtGO-FFUexxULMuCn3NWOkaYA6hn9ix3q0MUE1bBmzZKkAJE"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-green-500 w-6 h-6 rounded-full border-[3px] border-white dark:border-background-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-size: 14px; font-weight: 700;">check</span>
+</div>
+</div>
+<h1 class="mt-3 text-2xl font-bold text-[#121417] dark:text-white tracking-tight">Nguyễn Văn Tuấn</h1>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 18px;">verified_user</span>
+<p class="text-gray-500 dark:text-gray-400 font-medium text-sm">Chuyên viên BĐS Tân Bình</p>
+</div>
+</div>
+<!-- Stats -->
+<div class="flex gap-3 mt-6">
+<div class="flex-1 bg-white dark:bg-[#1e344d] p-4 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-soft flex flex-col items-center justify-center text-center gap-1 transition-transform hover:scale-[1.02] duration-200">
+<span class="text-2xl font-extrabold text-primary dark:text-white">24</span>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Sản phẩm đang bán</span>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e344d] p-4 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-soft flex flex-col items-center justify-center text-center gap-1 transition-transform hover:scale-[1.02] duration-200">
+<div class="flex items-center gap-1">
+<span class="text-2xl font-extrabold text-primary dark:text-white">85%</span>
+<span class="material-symbols-outlined text-yellow-400" style="font-size: 20px; font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Khách hàng hài lòng</span>
+</div>
+</div>
+</section>
+<!-- Filters (Sticky) -->
+<div class="sticky top-[64px] z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm pt-2 pb-4 px-5">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold shadow-md shadow-primary/20 transition-all hover:bg-primary/90">
+                        Tất cả
+                    </button>
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1e344d] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-[#253f5c] transition-colors whitespace-nowrap">
+                        Nhà phố
+                    </button>
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1e344d] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-[#253f5c] transition-colors whitespace-nowrap">
+                        Căn hộ
+                    </button>
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1e344d] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-[#253f5c] transition-colors whitespace-nowrap">
+                        Đất nền
+                    </button>
+<button class="flex-shrink-0 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1e344d] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-[#253f5c] transition-colors whitespace-nowrap">
+                        Biệt thự
+                    </button>
+</div>
+</div>
+<!-- Property List -->
+<section class="px-5 flex flex-col gap-6">
+<!-- Card 1 -->
+<article class="group bg-white dark:bg-[#1e344d] rounded-2xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-lg border border-transparent dark:border-gray-700">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern luxury villa exterior with garden and pool under sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0FZqFRc-FRKfchAV2z5Tdu7vmsSr8Kg7nIHXMYwoVHBVhDoNfDFwGLH_nz_4wNd5Vw7rdf3XiIVh5vq1n7bDGuA-DDRJqiK7BImT1SRHKiQBKPjEtTpADSJ0rxsTv64ynJwtYyMWSOEoQJMyjShJk2CCEV8OxRNF8_hTQYcyWd5QYiQDi9nSQEx7bAH55_s6-EPoz5j28RddsH7aI5b401S692uThbXDDN6GIIevOLgkCYou0xUEZqbpvVeEl16XipGosxCuDsF8"/>
+<!-- Trust Badge -->
+<div class="absolute top-4 left-4 bg-trust-light/95 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-trust-light flex items-center gap-1.5">
+<span class="material-symbols-outlined text-trust-dark" style="font-size: 16px; font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold text-trust-dark uppercase tracking-wide">Pháp lý sạch</span>
+</div>
+<!-- Gradient Overlay for Contrast -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+<!-- Quick Location on Image (Optional delight) -->
+<div class="absolute bottom-4 left-4 flex items-center gap-1 text-white/90">
+<span class="material-symbols-outlined text-white" style="font-size: 18px;">location_on</span>
+<span class="text-xs font-medium drop-shadow-md">Tân Bình, TP.HCM</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex flex-col gap-1 mb-3">
+<div class="flex justify-between items-baseline">
+<h3 class="text-2xl font-bold text-primary dark:text-blue-300 tracking-tight">12.5 Tỷ</h3>
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">~113.6tr/m²</span>
+</div>
+<h2 class="text-lg font-bold text-[#121417] dark:text-white leading-tight">Biệt thự sân vườn khu K300</h2>
+</div>
+<!-- Specs Grid -->
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-gray-100 dark:border-gray-700">
+<div class="flex flex-col items-center justify-center p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">square_foot</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">110m²</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bed</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">4 PN</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bathtub</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">3 WC</span>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between gap-3">
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1 flex-1">
+                                Phường 12, Quận Tân Bình
+                             </p>
+<button class="p-2 rounded-full bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-white" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group bg-white dark:bg-[#1e344d] rounded-2xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-lg border border-transparent dark:border-gray-700">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern minimalist apartment interior with large windows and bright living room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU5VsAl3IREWagw-HvlvaVFXAVoGk89THCnuj-yOWTvsqoyk0CIKp6HRYQJdhxAauaXmqxj56YKitvifqnf1m8m_QFlDOWp7Vv5Fqunj7QwrGhWh7X3iyXd9ZvCvSbPgJ7aaATzAGrohFDUiMEzdujI8_DdI2nJvu_bhXzJjSyY5DRtMHUIAWfYSGqYiJVR3Ll1cFKvq77hJRRsKf2U4N4zUBMuD1S6yyrbtzMUZcBMiFXZbJXpxHGUB8zlN3NSxGo3A2iYX4O5Wo"/>
+<div class="absolute top-4 left-4 bg-trust-light/95 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-trust-light flex items-center gap-1.5">
+<span class="material-symbols-outlined text-trust-dark" style="font-size: 16px; font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold text-trust-dark uppercase tracking-wide">Sổ hồng riêng</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex flex-col gap-1 mb-3">
+<div class="flex justify-between items-baseline">
+<h3 class="text-2xl font-bold text-primary dark:text-blue-300 tracking-tight">6.8 Tỷ</h3>
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">~85tr/m²</span>
+</div>
+<h2 class="text-lg font-bold text-[#121417] dark:text-white leading-tight">Nhà phố hẻm xe hơi Bàu Cát</h2>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-gray-100 dark:border-gray-700">
+<div class="flex flex-col items-center justify-center p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">square_foot</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">80m²</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bed</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">3 PN</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bathtub</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">3 WC</span>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between gap-3">
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1 flex-1">
+                                Phường 14, Quận Tân Bình
+                             </p>
+<button class="p-2 rounded-full bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-white" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group bg-white dark:bg-[#1e344d] rounded-2xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-lg border border-transparent dark:border-gray-700">
+<div class="relative aspect-[4/3] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern penthouse apartment living room with panoramic city view at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJXrsRXsqsa6iTYpWob1JLjuVJUxTqV98q_3YC9NsI1QaFdpvLKI-yq9l1vSecM-T0dY8szRKgX2FTE7sfZfrQ6xsr_8sNDlwozqarlz7zpBckpxZNWo_fsxj8W7HGzqD2CThHvHGzITwZwWbTVWjttNeEDU1NLjr1EFDa0ubYp-FgryH6LulAf1LoW0gfpCX5ZiOKmOFzSsMJjIUUVpvmaij4AZVdaJDO2uAzj9MKkMuzj3r8TV6eo3_4uzbCculCrqt0qp2jAf0"/>
+<div class="absolute top-4 left-4 bg-trust-light/95 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-trust-light flex items-center gap-1.5">
+<span class="material-symbols-outlined text-trust-dark" style="font-size: 16px; font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold text-trust-dark uppercase tracking-wide">Sở hữu lâu dài</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex flex-col gap-1 mb-3">
+<div class="flex justify-between items-baseline">
+<h3 class="text-2xl font-bold text-primary dark:text-blue-300 tracking-tight">4.2 Tỷ</h3>
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">~60tr/m²</span>
+</div>
+<h2 class="text-lg font-bold text-[#121417] dark:text-white leading-tight">Căn hộ cao cấp Sky Center</h2>
+</div>
+<div class="grid grid-cols-3 gap-2 py-3 border-t border-b border-gray-100 dark:border-gray-700">
+<div class="flex flex-col items-center justify-center p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">square_foot</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">74m²</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bed</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">2 PN</span>
+</div>
+<div class="flex flex-col items-center justify-center border-l border-gray-100 dark:border-gray-700 p-1">
+<span class="material-symbols-outlined text-gray-400 mb-1" style="font-size: 20px;">bathtub</span>
+<span class="text-sm font-semibold text-[#121417] dark:text-gray-200">2 WC</span>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between gap-3">
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1 flex-1">
+                                Phổ Quang, Quận Tân Bình
+                             </p>
+<button class="p-2 rounded-full bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-white" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Fixed Footer -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+<div class="w-full max-w-md pointer-events-auto bg-white/80 dark:bg-background-dark/90 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 p-4 pb-8 safe-bottom shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+<button class="w-full flex items-center justify-center gap-2 bg-accent hover:bg-opacity-90 active:scale-[0.98] text-white text-lg font-bold py-4 rounded-xl shadow-glow transition-all duration-200">
+<span class="material-symbols-outlined" style="font-size: 24px;">support_agent</span>
+                    Nhận tư vấn ngay
+                </button>
+</div>
+</footer>
+</div>
+</body></html>

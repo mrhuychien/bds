@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trang giới thiệu Khách hàng v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#29a38f",
+                        "price-accent": "#FF4A21",
+                        "zalo-blue": "#0068FF",
+                        "call-green": "#38A758",
+                        "background-light": "#ffffff",
+                        "background-dark": "#22262a",
+                        "text-main": "#121716",
+                        "text-secondary": "#67837f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'float': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-text-main dark:text-white pb-28">
+<!-- Mobile Container -->
+<div class="mx-auto w-full max-w-[480px] min-h-screen relative bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Top Navigation Overlay -->
+<div class="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4 pt-12 bg-gradient-to-b from-black/40 to-transparent">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+</button>
+</div>
+</div>
+<!-- Hero Image Slider -->
+<div class="relative w-full h-[320px] bg-gray-200 group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Modern 3-story townhouse facade with green plants on balcony in sunny weather" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTEAVCy1qs7ZxmMAFv_W4yeV30H4qEUvuu348SGuqIIeSJjqGQvz_iEjf5e9BZ8OK18mhgOQl_vEXOCwhnm9666xd1iDweAkabFKqKIoRU-les-zFnFrcRMWLqoEadVnZMdNVzrBjaISt_ubGeosPWjw-T5QqdigRJMkmeLeE5OE1W0FSQoOMQGjXIkIcIQ18OEefZI5bbfU70MGMibg9coAQsP_L1f9RwHRbESMjkew6z2kfEj_KJSVZOsGtdw31K6_qvgjmXy0I");'>
+</div>
+<!-- Pagination Dots -->
+<div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-white shadow-sm"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 backdrop-blur-sm"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 backdrop-blur-sm"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 backdrop-blur-sm"></div>
+<div class="w-2 h-2 rounded-full bg-white/50 backdrop-blur-sm"></div>
+</div>
+<!-- Image Counter Badge -->
+<div class="absolute bottom-4 right-4 bg-black/50 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">photo_camera</span>
+                1/12
+            </div>
+</div>
+<!-- Content Body -->
+<div class="px-5 -mt-6 relative z-10">
+<!-- Price and Title Card -->
+<div class="bg-white dark:bg-zinc-800 rounded-2xl shadow-soft p-5 mb-6 border border-gray-100 dark:border-zinc-700">
+<div class="flex justify-between items-start mb-3">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-text-secondary dark:text-gray-400 mb-1">Giá bán</span>
+<h1 class="text-price-accent text-[32px] font-extrabold leading-none tracking-tight">8.5 Tỷ</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-zinc-700 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+</button>
+</div>
+<h2 class="text-xl font-bold text-text-main dark:text-white leading-tight mb-3">
+                    Nhà phố 3 tầng Quận Tân Bình
+                </h2>
+<div class="flex items-start gap-2 text-text-secondary dark:text-gray-400">
+<span class="material-symbols-outlined text-[20px] shrink-0 text-primary mt-0.5">location_on</span>
+<p class="text-[15px] font-medium leading-snug">Đường Cộng Hòa, Phường 13, Quận Tân Bình, TP.HCM</p>
+</div>
+</div>
+<!-- Key Stats Grid -->
+<div class="grid grid-cols-3 gap-3 mb-6">
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">square_foot</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">Diện tích</span>
+<span class="text-sm font-bold text-text-main dark:text-white">85m²</span>
+</div>
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">bed</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">Phòng ngủ</span>
+<span class="text-sm font-bold text-text-main dark:text-white">4 PN</span>
+</div>
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">shower</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">WC</span>
+<span class="text-sm font-bold text-text-main dark:text-white">3 WC</span>
+</div>
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">apartment</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">Kết cấu</span>
+<span class="text-sm font-bold text-text-main dark:text-white">3 Tầng</span>
+</div>
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">explore</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">Hướng</span>
+<span class="text-sm font-bold text-text-main dark:text-white">Đông</span>
+</div>
+<!-- Stat Item -->
+<div class="bg-gray-50 dark:bg-zinc-800/50 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-1 border border-gray-100 dark:border-zinc-700">
+<span class="material-symbols-outlined text-primary text-[24px]">description</span>
+<span class="text-xs text-text-secondary dark:text-gray-400 font-medium">Pháp lý</span>
+<span class="text-sm font-bold text-text-main dark:text-white">Sổ hồng</span>
+</div>
+</div>
+<!-- Highlights Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-6 -mx-5 px-5">
+<div class="shrink-0 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">directions_car</span> Hẻm xe hơi
+                </div>
+<div class="shrink-0 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">school</span> Gần trường học
+                </div>
+<div class="shrink-0 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span> Mới xây 2023
+                </div>
+<div class="shrink-0 bg-primary/10 text-primary px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1.5 whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px]">security</span> An ninh tốt
+                </div>
+</div>
+<!-- Description -->
+<div class="mb-8">
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-2">Thông tin mô tả</h3>
+<div class="relative">
+<p class="text-[15px] leading-relaxed text-text-secondary dark:text-gray-300">
+                        Cần bán gấp nhà phố thiết kế hiện đại, nội thất cao cấp nhập khẩu châu Âu. Vị trí đắc địa ngay trung tâm quận Tân Bình, thuận tiện di chuyển về Quận 1, Quận 3 và sân bay Tân Sơn Nhất. 
+                        <br/><br/>
+                        Nhà được xây dựng kiên cố, không gian thoáng đãng, nhiều ánh sáng tự nhiên. Khu dân cư văn minh, yên tĩnh, an ninh đảm bảo 24/7...
+                    </p>
+<div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent"></div>
+</div>
+<button class="text-primary font-semibold text-sm mt-2 flex items-center gap-1 hover:underline">
+                    Xem thêm <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Location Preview (Blurred) -->
+<div class="mb-8">
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-3">Vị trí</h3>
+<div class="relative rounded-xl overflow-hidden h-40 group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center blur-[3px] scale-105" data-alt="Blurred map of Ho Chi Minh City showing streets" data-location="Ho Chi Minh City" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAauyUEz5HVdEEbRdv-llM3-Ols6s9cn1gP3YgpfuQItWNRqHMPVwo7PNse-qfqG4XwtoF_6zKWII5K9gj7LfJcWu-nvf5hw2AaVhF5ZK3Tsmr9c7wo0lux0-IKu9AnfpqvAI56k3pSV5Tay6EEX_05KJMXUjmAxXbZwzuZ5U16fhIspHeOAOvy0sypaNXkYIm6tW4HYA_W_5hDF-uyShr7pZWNKvWLjqa4uToCaX7l2rxzPZxDyJx2NyLLpSibFSB-4r1ftL97FXM");'>
+</div>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+<div class="bg-white dark:bg-zinc-800 p-3 rounded-full shadow-lg mb-2">
+<span class="material-symbols-outlined text-primary text-[24px]">lock</span>
+</div>
+<span class="bg-white/90 dark:bg-zinc-800/90 backdrop-blur text-xs font-bold text-text-main dark:text-white px-3 py-1.5 rounded-lg shadow-sm">
+                            Liên hệ để biết vị trí chính xác
+                        </span>
+</div>
+</div>
+</div>
+<!-- Agent Card -->
+<div class="bg-white dark:bg-zinc-800 rounded-xl p-4 shadow-soft border border-gray-100 dark:border-zinc-700 flex items-center gap-4 mb-6">
+<div class="relative shrink-0">
+<div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden border-2 border-primary/20" data-alt="Professional portrait of real estate agent Nguyen Van Tuan">
+<img alt="Agent Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0O69wrgGyHMh6tLHjZbCeTzxHFHcxWbW2VIzd-1eTwkhEKpucyBm7uPNyP_eIdJ26oe-pGQMqMP3147NY0mW2vI68D2xdp_VzUnetVE0TvgdP3Ky5Gsf43B1_I1aFWDHSGYDI7Q-ye_M4MHYObNtucCCgt96d8OAsvsfVFVtjK1r4E03uC-n-FwytR-lnAU64lm6iH4Zr2xhCLbODc8NKO5L7mAcwCs5Us_U4mi42Q5vzkik9IEgyLHebZWr7IlOB_o7bo7ggQNM"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-white dark:border-zinc-800"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-0.5">
+<h4 class="text-base font-bold text-text-main dark:text-white truncate">Nguyễn Văn Tuấn</h4>
+<span class="material-symbols-outlined text-blue-500 text-[16px]" title="Verified">verified</span>
+</div>
+<p class="text-xs text-text-secondary dark:text-gray-400 truncate mb-1.5">Chuyên viên tư vấn BĐS</p>
+<div class="inline-flex items-center gap-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase">
+<span class="material-symbols-outlined text-[12px]">star</span>
+                        5 năm kinh nghiệm
+                    </div>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-zinc-600 text-gray-500 hover:bg-gray-50 dark:hover:bg-zinc-700">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<!-- Disclaimers / Legal -->
+<div class="pb-6 text-center">
+<p class="text-[11px] text-gray-400 dark:text-gray-600 leading-normal px-8">
+                     Tin đăng được kiểm duyệt bởi Batdongsan.digital. <br/>
+                     Hình ảnh và nội dung mang tính chất tham khảo.
+                 </p>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800 px-4 py-3 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)]">
+<div class="flex gap-3 w-full max-w-[480px] mx-auto">
+<button class="flex-1 h-12 bg-call-green hover:bg-green-700 active:bg-green-800 text-white rounded-xl font-bold text-base shadow-lg shadow-green-500/20 flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[20px] fill-current">call</span>
+                    GỌI NGAY
+                </button>
+<button class="flex-1 h-12 bg-zalo-blue hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl font-bold text-base shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[20px] fill-current">chat_bubble</span>
+                    CHAT ZALO
+                </button>
+</div>
+<!-- iOS Home Indicator Area -->
+<div class="h-4 w-full"></div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,188 @@
+<html><head><meta charset="utf-8"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#1e3fae",
+          "background-light": "#f9fafb",
+          "background-dark": "#1f242e",
+        },
+        fontFamily: {
+          "display": ["Inter"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background-light dark:bg-background-dark font-display text-[#121317] dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full max-w-[375px] mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-gray-100 dark:border-gray-800 shadow-2xl">
+<!-- Sticky TopAppBar -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center p-4 justify-between h-16">
+<button class="flex items-center text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Chi tiết Bất động sản</h2>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-full shadow-lg shadow-primary/30 active:scale-95 transition-transform">
+                    Lưu
+                </button>
+</div>
+</header>
+<main class="flex-1 pb-12 custom-scrollbar overflow-y-auto">
+<!-- Media Section -->
+<section class="mt-4 px-4">
+<div class="bg-white dark:bg-gray-800/40 rounded-xl p-4 border border-gray-100 dark:border-gray-700/50 shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Hình ảnh</h3>
+<span class="text-xs font-semibold text-primary">3 / 10 ảnh</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+<div class="w-full h-full bg-center bg-cover" data-alt="Modern penthouse living room view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3E8pUQ_3iMWmNPLIA8ONmvt2vqM01noVfWAi2xxotB0iWhH6ay4HY-McjYKHIl8gsgXw3lo2obSQtuOCcKJUoj1pHHu0_2KQGZ-UQKxOcEkbNP6XjixXKPh7I-H-l-PbGgiIR3aoVAW9DJP49_SMcXg3_bV8Z9iweOBmjJi395tfbhZaTsVLoqUo8r3S87yGHhBLKYm03dvg4ooyK1dq8j2l33IsWfSB79FEu-uquBx1ux5oKEdw163WB4xHoXu99fTB3zrfJT8E");'></div>
+<div class="absolute top-1 right-1">
+<button class="bg-black/50 text-white p-1 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined !text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="relative group aspect-square rounded-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+<div class="w-full h-full bg-center bg-cover" data-alt="Minimalist bedroom with warm lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJjKsU6C_nP2bBAv-E992LGIhV0UTha1mIFMnqH7gGk5c80QxJq2gVJmxuCDdakvFc8A4ErA0Yr4jWQnJI0rDCksqE7U3MBso0EHzCSHAFuhLp7mUbPzF8PTPTOLPEG6FhlaEeXA5huD9QK9riC4Ge4AFIe9lGahiPsvxD-Hp92JX-IDqtjUlQKCAJD89dUYCnJV_A7BJ-xTinSKir4WeeEJPpRgm7F7PDmCVeHFNtAJpVOeSi924El_juu_mnYdOJEXjkeRizBEE");'></div>
+<div class="absolute top-1 right-1">
+<button class="bg-black/50 text-white p-1 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined !text-[16px]">close</span>
+</button>
+</div>
+</div>
+<button class="flex flex-col items-center justify-center aspect-square rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/20 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary mb-1">add_a_photo</span>
+<span class="text-[10px] font-bold uppercase text-gray-400">Thêm ảnh</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Form Fields Section -->
+<section class="mt-6 px-4 space-y-6">
+<!-- Basic Information Card -->
+<div class="bg-white dark:bg-gray-800/40 rounded-xl p-4 border border-gray-100 dark:border-gray-700/50 shadow-sm space-y-5">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Thông tin cơ bản</h3>
+<!-- Property Name -->
+<div class="relative">
+<p class="text-[11px] font-bold text-gray-400 uppercase mb-1.5 ml-1">Tên bất động sản</p>
+<input class="w-full bg-gray-50 dark:bg-gray-900 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-gray-300 dark:placeholder:text-gray-600" placeholder="Nhập tên bđs..." type="text" value="Vinhomes Central Park - Landmark 81"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Price Field -->
+<div class="relative">
+<p class="text-[11px] font-bold text-gray-400 uppercase mb-1.5 ml-1">Giá bán</p>
+<div class="relative">
+<input class="w-full bg-gray-50 dark:bg-gray-900 border-none rounded-lg pl-4 pr-12 py-3 text-sm font-bold text-primary focus:ring-2 focus:ring-primary/20" type="number" value="8500000000"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400">VND</span>
+</div>
+</div>
+<!-- Area Field -->
+<div class="relative">
+<p class="text-[11px] font-bold text-gray-400 uppercase mb-1.5 ml-1">Diện tích</p>
+<div class="relative">
+<input class="w-full bg-gray-50 dark:bg-gray-900 border-none rounded-lg pl-4 pr-12 py-3 text-sm font-bold focus:ring-2 focus:ring-primary/20" type="number" value="85"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400">m²</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Features Card -->
+<div class="bg-white dark:bg-gray-800/40 rounded-xl p-4 border border-gray-100 dark:border-gray-700/50 shadow-sm space-y-5">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Đặc điểm chi tiết</h3>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<span class="text-sm font-medium">Số phòng ngủ</span>
+</div>
+<div class="flex items-center bg-gray-50 dark:bg-gray-900 rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-md bg-white dark:bg-gray-800 shadow-sm text-gray-400">
+<span class="material-symbols-outlined !text-[18px]">remove</span>
+</button>
+<span class="w-10 text-center text-sm font-bold">2</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-md bg-primary text-white shadow-md shadow-primary/20">
+<span class="material-symbols-outlined !text-[18px]">add</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">bathtub</span>
+</div>
+<span class="text-sm font-medium">Số phòng tắm</span>
+</div>
+<div class="flex items-center bg-gray-50 dark:bg-gray-900 rounded-lg p-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-md bg-white dark:bg-gray-800 shadow-sm text-gray-400">
+<span class="material-symbols-outlined !text-[18px]">remove</span>
+</button>
+<span class="w-10 text-center text-sm font-bold">2</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-md bg-primary text-white shadow-md shadow-primary/20">
+<span class="material-symbols-outlined !text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Location & Description Card -->
+<div class="bg-white dark:bg-gray-800/40 rounded-xl p-4 border border-gray-100 dark:border-gray-700/50 shadow-sm space-y-5">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400">Vị trí &amp; Mô tả</h3>
+<div class="relative">
+<p class="text-[11px] font-bold text-gray-400 uppercase mb-1.5 ml-1">Địa chỉ</p>
+<div class="relative">
+<span class="absolute left-4 top-3 text-gray-400">
+<span class="material-symbols-outlined !text-[20px]">location_on</span>
+</span>
+<input class="w-full bg-gray-50 dark:bg-gray-900 border-none rounded-lg pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-primary/20" type="text" value="720A Điện Biên Phủ, Phường 22, Bình Thạnh, TP.HCM"/>
+</div>
+</div>
+<div class="relative">
+<p class="text-[11px] font-bold text-gray-400 uppercase mb-1.5 ml-1">Mô tả chi tiết</p>
+<textarea class="w-full bg-gray-50 dark:bg-gray-900 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 min-h-[120px] resize-none" placeholder="Nhập mô tả về bất động sản, tiện ích xung quanh, hướng nhà...">Căn hộ cao cấp tầng 45, view trực diện sông Sài Gòn và công viên 14ha. Nội thất đầy đủ từ chủ đầu tư. Sổ hồng chính chủ, sang tên ngay.</textarea>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Tab Bar Placeholder (Optional/Visual) -->
+<div class="h-16 bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800 flex items-center justify-around px-4">
+<span class="material-symbols-outlined text-primary">edit_square</span>
+<span class="material-symbols-outlined text-gray-400">share</span>
+<span class="material-symbols-outlined text-gray-400">visibility</span>
+<span class="material-symbols-outlined text-gray-400">delete</span>
+</div>
+</div>
+</body></html>

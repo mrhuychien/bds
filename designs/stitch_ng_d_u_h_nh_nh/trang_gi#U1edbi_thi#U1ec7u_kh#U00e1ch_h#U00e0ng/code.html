@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e3fae",
+                        "accent": "#F97316",
+                        "success": "#10B981",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#1f242e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="text-slate-900 dark:text-white cursor-pointer h-10 w-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Chi tiết bất động sản</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<!-- Hero Image Gallery -->
+<div class="relative w-full aspect-[4/3] @container px-4 mt-2">
+<div class="relative h-full w-full rounded-2xl overflow-hidden shadow-xl">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Modern luxury villa exterior with garden" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 30%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDMX_HS1ECxkYXqIUc735KhMOSmsRgAPg_j52aSR6-wvYnbg4j1WP09YXzWUk-IzL_YvtzwvtyJczbK9-uDrxA-cBall_vFdhy59PC5hMwR1T12rcZAxWMDQfHgkzmiOFbh232p91TQgA7gsOWb46WubId6f9Lu8Z4F-Vib1oTqZ6vwxAG7_UxSL4oQOhn2BuJGG0azuLFpn3zjnWpuh1RMbXwr8alno2v6VMZ0V5PTrz8lMZ4ZLNEFhQHJ2rXeBvEuT-QiCxU37g');">
+</div>
+<!-- Badge: Price -->
+<div class="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-xl font-bold text-lg shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">payments</span>
+                12.5 Tỷ
+            </div>
+<!-- Badge: Status -->
+<div class="absolute top-4 right-4 bg-success text-white px-3 py-1.5 rounded-lg font-semibold text-xs flex items-center gap-1 shadow-md">
+<span class="size-2 bg-white rounded-full animate-pulse"></span>
+                ĐANG BÁN
+            </div>
+<!-- Gallery Indicators -->
+<div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full">
+<div class="size-1.5 rounded-full bg-white"></div>
+<div class="size-1.5 rounded-full bg-white/40"></div>
+<div class="size-1.5 rounded-full bg-white/40"></div>
+<div class="size-1.5 rounded-full bg-white/40"></div>
+<span class="text-[10px] text-white font-medium ml-1">1/12</span>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="px-4 py-6">
+<!-- Headline & Tags -->
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">Sổ đỏ chính chủ</span>
+<span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold">Hướng Đông Nam</span>
+</div>
+<h1 class="text-2xl font-bold leading-tight text-slate-900 dark:text-white mb-2">Biệt thự song lập Vinhomes Ocean Park - Phân khu Ngọc Trai</h1>
+<div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-6">
+<span class="material-symbols-outlined text-base mr-1">location_on</span>
+            Gia Lâm, Hà Nội • 120m² sàn
+        </div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-3 gap-3 mb-8">
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<p class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Diện tích</p>
+<p class="font-bold text-slate-900 dark:text-white">120m²</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<p class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Phòng ngủ</p>
+<p class="font-bold text-slate-900 dark:text-white">04</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<p class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Tầng cao</p>
+<p class="font-bold text-slate-900 dark:text-white">03 Tầng</p>
+</div>
+</div>
+<!-- Description Section -->
+<section class="mb-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Mô tả chi tiết</h3>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                Căn biệt thự song lập vị trí kim cương tại phân khu Ngọc Trai. View trực diện hồ điều hòa, không gian sống xanh đẳng cấp. Nội thất bàn giao thô giúp gia chủ tự do thiết kế theo phong cách cá nhân...
+                <button class="text-primary font-semibold ml-1">Xem thêm</button>
+</p>
+</section>
+<!-- Amenities Section (Tiện ích) -->
+<section class="mb-8">
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Tiện ích khu vực</h3>
+<button class="text-xs text-primary font-bold">Tất cả</button>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="flex flex-col items-center gap-2">
+<div class="size-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary">pool</span>
+</div>
+<span class="text-[11px] font-medium text-slate-600 dark:text-slate-400 text-center">Bể bơi</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="size-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<span class="text-[11px] font-medium text-slate-600 dark:text-slate-400 text-center">Phòng Gym</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="size-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary">park</span>
+</div>
+<span class="text-[11px] font-medium text-slate-600 dark:text-slate-400 text-center">Công viên</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="size-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary">local_hospital</span>
+</div>
+<span class="text-[11px] font-medium text-slate-600 dark:text-slate-400 text-center">Bệnh viện</span>
+</div>
+</div>
+</section>
+<!-- Location Preview -->
+<section class="mb-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Vị trí</h3>
+<div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-inner border border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Map view showing property location in Gia Lam" data-location="Gia Lam, Hanoi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5N_YCiuj0Ch7TEr5wbMnx5jeCTYxn7rUpA2MFIEJtJYM9iTusD3TDk4qwUu3eUfgEi3xXepEjMUSJL2GyjrqJPPgGkXKLC-LQI4f1AAgTSj7802zCAQsAX825-bn35A1JAuNiBd3sRokLUzMhNokdEKnj0ir4nIUv3NStw4uxbS0YaIEwQDWUqITYpDEkbdSKghmUbAGSlkaCP3nBMKiIvuW9qhsJi4IUjcvsW7gKn2AjUC2rn88BaTeXGkSPI0-LDLcpW8SfU4s');">
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary/20 p-4 rounded-full animate-pulse">
+<div class="bg-primary p-2 rounded-full text-white shadow-xl">
+<span class="material-symbols-outlined">push_pin</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-3 right-3">
+<button class="bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg flex items-center gap-2 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-sm">map</span>
+                        Mở bản đồ
+                    </button>
+</div>
+</div>
+</section>
+<!-- Agent Profile Card -->
+<section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg">
+<div class="flex items-center gap-4">
+<div class="relative size-16 shrink-0">
+<img alt="Agent Portrait" class="size-full rounded-full object-cover ring-2 ring-primary/20" data-alt="Professional real estate agent portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq6jRMnkvoo1igqTiYpmq_5BrXuw6M-6tC7d2Fox8_Gy8rYaTOoiIqvbQf9juDcPwDN56RFJR9moyQAh64v3dxgvDQw_1wTNAZpj_VgyFUZ9paVfajifmtssz9SLMzhxdLdY9vN8joXwpNhI4hihSsLi7DnR0BAcV2Uiz9baY_i_fg5mUBOBC7gMuxa-5e21Jpad7ytZHdKstNmfnZLG0WjU-ZcuoPU-qmkNHdClzomr1iF7LDHfKUxg7-Cm9N56b-TbTAtOEEKNA"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white p-0.5 rounded-full ring-2 ring-white dark:ring-slate-800">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-900 dark:text-white text-lg">Nguyễn Văn Đại</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Chuyên gia tư vấn Vinhomes</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300">4.9</span>
+<span class="text-[10px] text-slate-400">(128 đánh giá)</span>
+</div>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+                    Nhắn tin
+                </button>
+<button class="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">call</span>
+                    Gọi ngay
+                </button>
+</div>
+</section>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 flex gap-3 items-center z-50">
+<button class="size-12 flex items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined">forum</span>
+</button>
+<button class="flex-1 h-12 bg-accent hover:bg-orange-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-accent/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">phone_in_talk</span>
+            LIÊN HỆ NGAY
+        </button>
+</div>
+</body></html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đóng dấu Hàng loạt - Batdongsan.digital</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ef6f2e",
+              "primary-dark": "#d85a1b",
+              "background-light": "#f2f4f6",
+              "background-dark": "#16181d",
+              "accent-blue": "#163A7D",
+              "surface-light": "#ffffff",
+              "surface-dark": "#23262e",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            boxShadow: {
+                "soft": "0 4px 20px -2px rgba(22, 58, 125, 0.08)",
+                "float": "0 8px 30px -4px rgba(0, 0, 0, 0.12)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Checkbox Animation */
+        .checkbox-wrapper {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .checkbox-wrapper:active {
+            transform: scale(0.9);
+        }
+
+        /* Circular Progress Animation */
+        @keyframes progress-spin {
+            0% { stroke-dasharray: 0 100; }
+            100% { stroke-dasharray: 75 100; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-100 dark:bg-gray-900 flex justify-center items-center min-h-screen font-display antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Mobile Container -->
+<div class="relative w-full max-w-[393px] h-[852px] bg-background-light dark:bg-background-dark overflow-hidden shadow-2xl sm:rounded-[3rem] flex flex-col group/design-root border-[6px] border-gray-900 dark:border-gray-800">
+<!-- Status Bar Area (Decorative) -->
+<div class="h-[44px] bg-white/90 dark:bg-background-dark/90 backdrop-blur-md w-full absolute top-0 z-30 flex justify-between items-center px-6">
+<div class="text-xs font-bold text-black dark:text-white">9:41</div>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-black dark:text-white text-[18px]" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-black dark:text-white text-[18px]" data-icon="wifi">wifi</span>
+<span class="material-symbols-outlined text-black dark:text-white text-[18px]" data-icon="battery_full">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<header class="pt-[44px] pb-2 px-4 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md sticky top-0 z-20 border-b border-gray-100 dark:border-gray-800 transition-colors">
+<div class="flex items-center justify-between h-11">
+<button class="text-accent-blue dark:text-blue-400 text-[17px] font-medium active:opacity-70 transition-opacity">
+                    Hủy
+                </button>
+<h1 class="text-gray-900 dark:text-white text-[17px] font-bold truncate px-2">
+                    Đóng dấu hàng loạt
+                </h1>
+<button class="text-accent-blue dark:text-blue-400 text-[17px] font-medium active:opacity-70 transition-opacity">
+                    Chọn tất cả
+                </button>
+</div>
+<!-- Quick Filters / Info (Optional context specific to Real Estate) -->
+<div class="flex gap-2 mt-1 pb-1 overflow-x-auto no-scrollbar">
+<div class="px-3 py-1 rounded-full bg-accent-blue/5 text-accent-blue dark:bg-blue-900/30 dark:text-blue-300 text-xs font-semibold whitespace-nowrap">
+                    Vinhomes Central Park
+                </div>
+<div class="px-3 py-1 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400 text-xs font-medium whitespace-nowrap">
+                    22/10/2023
+                </div>
+</div>
+</header>
+<!-- Main Content Area: Photo Grid -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-32 bg-background-light dark:bg-background-dark px-[2px] pt-1">
+<div class="grid grid-cols-3 gap-[2px]">
+<!-- Photo Item 1 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Modern apartment living room with sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXFmtKlIKvS8dO22iuvn70Md9GVAq-nbT_Y5iwVnM7asEcpJ19_F_vrhdHADm6foRr5yPf6Fm8KqGeUkbh_tIP-y6dsEpXwRK7mPBQI6pbNy4dl0LWO42RraNGvORYc81V4dfNdFYJRpNSCDoq6alrAhJBwkorqtiULOCVqDQ1ctqW7E425TCXmmuir0yB8Lc4l6rrnqxDgFt01Y0fsNpif31_zQklaw7N38H6NtiCK62CqbLji3kDFO-8lAZZqfo1mE3_UNblUYk"/>
+<!-- Selection Overlay & Checkbox -->
+<div class="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<!-- Watermark Preview (Subtle Logo) -->
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 2 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Luxurious white modern house exterior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8GRb-_F-1bqXgKS_IHjQZ40M6ywwOzb98yW3A_6Hm-HhkBfR7JZQ_YI95Ie5_cHpS8LiuImZ7z5MQoTeOgEvf9j_Cu_r1ApMo9qfnj56XQ3Tr0LM7XyWKgHcG-0Nbs_X1sW2VclVyqsLOzU-UzKXdZrC0MsAvEes1lNJBRhn73_LMR36YaqSTswTqynUiyOP4pfERsbmkkjRLvItXaR5QdnwfBX1xXl-nDvG2YCLSxzqr1pJx09k0HDyQKZ1nFYKcpR_PUwNPQf8"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 3 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Modern kitchen with marble island" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvt1OE5ORTiS5O082FUhLlX97Kg9zDtmV7FVylcffWlBYid7KxnqHWqaWda3TC6PaSpO4EUpjDHcwDZpnZukh6ZvfMWZE6hG79lkTEg09bLcMCGsBmxD_OYaQxoCj33DEOWHnDuIJ9LrW-S43rffWWAt0vpDZNFmW53H2Ub3Xrg2ZLOOc1bD337P6A3N3mw76vBVv80evNDH6pPkymS4lukgcE7yLpjppII9CUY_C7zzTFbr6v4-M8V5rM6JbYe6WF2hPWkfsqeZM"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 4 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Minimalist bedroom with large window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcEI1N_bITZ7wlnIeeXRwwQ_MwrN9kHVjzmL8kAtiYOuzTaZubswlbc5-bccraJ_r1UStx5sBbxmYJ9Ybc8Hmbi0pYyCkCexN1CwbqkoywcAKhmpm5HF611kKRi7gta0OV5-RTDdOuDkvzMYWfTqC36MbK2C-eu9Q1AjC051HhpOzmdhxN6SQloqJ-5RyuRVJx-unAescHpIBlIlJGnT9KASWcsI6v0Svd3fCPllsBl44PAdu9EXi234SI0m9dzn43BvISmd5kqEc"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 5 (Not Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="Modern bathroom interior with glass shower" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGUs3EYxy6eoyxxxQhoQqxDIuQNv--76ouvN153oysBfJxleecQYwAHS1HwhoE42XZ3BN0SwK7unsvff7ErDj277PNeAnJvOmFizoMzoRkUegV0_haHDqvF6oBlY4LGF_l9Vmu5XiF-9u4jT0H9JKRIcd2nfgIJ_5XVskh_97VIXBLe4ouP6KCUvUPCve_OvEC8ZqUntSYhZ7SVw4wHTufLxiQ4Gz8grIS-xaEHrMlOnh4sQvNRdtMJvTQwi0JWZh6irZ5zmPJHC4"/>
+<!-- Unchecked State -->
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-black/20 backdrop-blur-sm border-2 border-white flex items-center justify-center shadow-sm">
+<!-- Empty -->
+</div>
+</div>
+</div>
+<!-- Photo Item 6 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Spacious living area with wooden floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6tBSjcqFcnPZuwUjHsjFYjoVTN1185mEMU9DChFKmdMLw2VzcHHKAVpRw9CqEWO-9Ztix-cXTEvhvonf9VAvQRfikuWG_RrYlfm0BrgH7uEb5xNHv5KRyEB2i1LBiszgybOguPgs03Y-u6AsOTcfGlvad7GIc8hX2XKmXaU9bonxy2OJHxeE_fX8PPzUzmAyLPti2WEMBtdkdmcWP3MaDhcKg9gxSG42fnDCJ5MlZqffNfzUvU1jwvvv6_hyb41JReWvQ0kXRdHc"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 7 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Balcony view of the city skyline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCKThbUWM4dERiqGERGCTTe520SPDNrU2SOLpd0ur9pw72hPaq_TMbnbcvvdkYnnvpjVXErQe3uKT92ZC5WjL6Xz8ZzdHIJYjH2YSqPGSftkOzqdObLEj5ZFKJ-4s3Qg8_EU61wgOsSWp3WviL1x0xfz8wW7m5HDl7KufRsnc7GdvUMK1goJwNGNgk1BTAys62-BuJ8fNU4-8QHaGRfa6HZbZrId-b3T64B2AI7Z_OzyyQpQgialmGiq_svlUtWsDTUqrUwuNdN8o"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 8 (Not Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover opacity-90" data-alt="Cozy reading corner by the window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRrWVPaYCAXFIrgeX-uRsthB2VLgkty1gZ29S0p8gUygKXF8nU2uPcLrgDa_omXwFyHipy-n8hIsBgbGhmuOzzEilprN5qmmLmXW4I5f_j9eGBWmcF6dqMi_JuFzvQaiKzs1c9JCv9r64M-BH2L3ztEaWkHcUTJu7pgxF_S7KVH-xxlaWXtH5DwGEOTBFtmbMTWwTvfl8lu_wWqCFvua_798Is0Ww_zAzRVYTTWxz2F1HUAX2BCiCH681WiqAvT-kZWrVNxazTKiY"/>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-black/20 backdrop-blur-sm border-2 border-white flex items-center justify-center shadow-sm">
+</div>
+</div>
+</div>
+<!-- Photo Item 9 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Modern dining table set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnygMsPzmq4IlCNYrFctJDJXKirJYMMAOGTISXlw4ti66BTPd40fvnCe-izAnMUlSV6a6YjkVkJuh-Q48JvMA1eMEjmx3lYEZxLh2WLldn3p0xrJiydoRFrPLxm4V7dJQwKgJKxeENL-y2OZcb9n-i54H5baUFq6fCQ1BWhX2n2FjAZ_0sHypNI1abLGuscup91r-tFZ9yCRHnu2QAAPnR-yRnMJzjfKExBlk18YF2Ikuke1MHSG_SpYIi9ewROqGQW0k60pEvPV4"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 10 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Real estate office meeting room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2uD_hu3Ljv4VAjeTnEMBXJ_qbIHhsro_YWVkhKxCpqOW1D0fonbBc1rFN-MjzuY8XF1JiGwzHuaOe6blGSAgbAruIvm6Boeb8uw77ljoZny5dYv3MvC-P58yMTTRdt8TTe3VNpkvukoV7EX99finH-KkGR08efJqSBWUnlOYSzQ0UlzjDwXyQ36UYjMfQdcjgrvm_l214L-la7jKbRYJ5R5QPv4Bk031iSet6D66XuAR0jIXZyLvCjY5EMeAfmqZKOy14PSXMrhk"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+<!-- Photo Item 11 (Not Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover opacity-90" data-alt="Outdoor garden patio with furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ_8YtN750mjZTxe6tPPIxe4sBOJV15LFKu89bBHup0RIixmWwnNOjveu-HB1AoJS1GxYvwqeu4fgd1siPs3MB-vNCXPxTkcnGi7Hs9BcTmFGtWIdEJpk_DFJQlttxP1vCiWCVXDbc7Xch_Zc-nMqI0DnLsqddeR8ls7QPBqz7t8V6N1V8G5MSKyG_UFTpe5YUOzkiguDZl9vZu2pFKpOh-dRTRHNJusSCj_i4v4KalAlsWfPnphuPWvSY3yegzO6FqdmFGOmyjEw"/>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-black/20 backdrop-blur-sm border-2 border-white flex items-center justify-center shadow-sm">
+</div>
+</div>
+</div>
+<!-- Photo Item 12 (Selected) -->
+<div class="relative aspect-square group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Modern architecture building facade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuF9Cn0nkXQrsTXdm1BZweo5wZ7n4SblS16dCPHs2KeQN2quvJpSEANIA8sFXxop0BawUyi8Ei4cImZ7dVon6P3xvGJDEEFhkXTqitIiMAK_YAEOkA5SeQ_mMutZoJGXJzF3pkZ79kZqFjjKbJ5IC8CIXvKjTyNXDMBG_lkJe3_R1qorssPffD4RvJfOBdRW9KYynIqF_rHREwc6m8zuAxIIDMsysZmiruoP2brCe5HbN6yYCuBSO2T2fzP9iq4eLbODr8AKxVavw"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute top-2 right-2 checkbox-wrapper z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm border border-white/20">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 opacity-80 pointer-events-none">
+<div class="bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded text-[8px] font-bold text-accent-blue shadow-sm border border-accent-blue/10">
+                            BDS.DIGITAL
+                        </div>
+</div>
+</div>
+</div>
+<!-- Padding at bottom for scroll -->
+<div class="h-24"></div>
+</main>
+<!-- Floating Progress Overlay (Simulated State: Processing) -->
+<!-- Placed over content to simulate modal popup -->
+<div class="absolute inset-0 z-40 bg-black/30 backdrop-blur-[2px] flex items-center justify-center p-8 animate-fade-in">
+<div class="bg-white dark:bg-surface-dark w-full max-w-[280px] rounded-2xl shadow-float p-6 flex flex-col items-center gap-4 border border-gray-100 dark:border-gray-700">
+<!-- Circular Progress -->
+<div class="relative size-16">
+<svg class="size-full rotate-[-90deg]" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Background Circle -->
+<circle class="stroke-current text-gray-200 dark:text-gray-700" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<!-- Progress Circle -->
+<circle class="stroke-current text-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="65" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<!-- Icon in Center -->
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-blue dark:text-blue-400 font-bold">auto_fix_high</span>
+</div>
+</div>
+<div class="text-center space-y-1">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg">Đang đóng dấu...</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium">4/12 ảnh</p>
+</div>
+<!-- Cancel Button for Process -->
+<button class="mt-2 text-gray-400 dark:text-gray-500 text-xs font-semibold hover:text-gray-600">
+                    Hủy xử lý
+                </button>
+</div>
+</div>
+<!-- Sticky Bottom Action Bar -->
+<!-- Note: Z-Index lower than overlay so it's dimmed -->
+<div class="absolute bottom-0 w-full bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800 p-4 pb-8 z-30 shadow-soft">
+<div class="flex items-center justify-between gap-4">
+<div class="flex flex-col">
+<p class="text-accent-blue dark:text-blue-300 text-sm font-bold">Đã chọn 9 ảnh</p>
+<p class="text-gray-400 text-xs">Tổng 12 ảnh</p>
+</div>
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white h-12 rounded-xl font-bold text-[15px] shadow-lg shadow-primary/30 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>Xử lý tất cả</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Đóng dấu Hình ảnh v2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1e3fae", // Deep blue
+              "primary-dark": "#152c7a",
+              "accent-orange": "#F97316", // Warm orange
+              "accent-orange-dark": "#ea580c",
+              "surface": "#f3f4f6",
+              "background-light": "#ffffff",
+              "background-dark": "#111827",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            aspectRatio: {
+              'video': '16 / 9',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }.scrollbar-hide {
+            -ms-overflow-style: none;scrollbar-width: none;}
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #F97316;
+            margin-top: -8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            border: 2px solid white;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+        .dark input[type="range"]::-webkit-slider-runnable-track {
+            background: #374151;
+        }.snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-start {
+            scroll-snap-align: start;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-50 dark:bg-background-dark text-gray-900 dark:text-white min-h-screen flex flex-col pb-[180px]">
+<nav class="sticky top-0 z-50 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-4 h-14 flex items-center justify-between transition-all">
+<button class="flex items-center gap-1 text-primary dark:text-blue-400 -ml-2 px-2 py-1 rounded-lg active:bg-gray-100 dark:active:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios</span>
+<span class="text-[17px] font-normal leading-none pb-[2px]">Quay lại</span>
+</button>
+<h1 class="text-[17px] font-semibold tracking-tight absolute left-1/2 -translate-x-1/2 whitespace-nowrap">Đóng dấu ảnh</h1>
+<button class="text-primary dark:text-blue-400 font-semibold text-[17px] px-2 py-1 active:opacity-60 transition-opacity">Lưu</button>
+</nav>
+<main class="flex-1 overflow-y-auto">
+<div class="bg-gray-100 dark:bg-black/40 pb-4 pt-2">
+<div class="px-4">
+<div class="relative aspect-video w-full bg-gray-300 dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm group ring-1 ring-black/5 dark:ring-white/10">
+<div class="absolute inset-0 bg-center bg-cover bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6dTVTOWh82KfZCFC5KH8dlHr8UpdU92L1u-7YAvBRwB4wgeVCf0WGx2GHRhg99wW3cu8o7xkQIHi2fopHmxqmCR6FnJ0t7urhRPRiDngzEVV_BHK7GXEZKyWgpRc1qc1rR1NWqHFtat1Wex-rEk4-N82tBUSD91XKTWVbVF8NABGWDnI2zITpstDq_Pb8WEV7Exfuv_wta4PmKUEMatWrE9rTk1scSKhQui1D6pI7ijObGRwVEnq_D52GELWFNuBBgC_6EJWPueg");'></div>
+<div class="absolute bottom-4 right-4 bg-gradient-to-r from-blue-900/95 to-primary/95 backdrop-blur-md px-4 py-2.5 rounded-lg border-l-4 border-accent-orange shadow-lg flex flex-col items-start gap-0.5 min-w-[180px] cursor-move">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-fill text-[16px]">call</span>
+<span class="text-[15px] font-bold tracking-wide">0912.345.678</span>
+</div>
+<div class="text-[12px] font-medium text-white/90">Nguyễn Văn Tuấn - BĐS Pro</div>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-accent-orange rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 mb-2 pl-4">
+<div class="flex items-center justify-between mb-2 pr-4">
+<h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Mẫu dấu</h3>
+<span class="text-xs text-primary font-medium">Xem tất cả</span>
+</div>
+<div class="flex overflow-x-auto gap-3 py-2 pr-4 scrollbar-hide snap-x">
+<div class="flex-none snap-start group">
+<div class="w-24 h-24 rounded-xl border-2 border-primary bg-white dark:bg-gray-800 p-1 flex flex-col justify-end gap-1 relative overflow-hidden shadow-md cursor-pointer transition-transform active:scale-95">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700">
+<div class="w-full h-full bg-cover opacity-60" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6dTVTOWh82KfZCFC5KH8dlHr8UpdU92L1u-7YAvBRwB4wgeVCf0WGx2GHRhg99wW3cu8o7xkQIHi2fopHmxqmCR6FnJ0t7urhRPRiDngzEVV_BHK7GXEZKyWgpRc1qc1rR1NWqHFtat1Wex-rEk4-N82tBUSD91XKTWVbVF8NABGWDnI2zITpstDq_Pb8WEV7Exfuv_wta4PmKUEMatWrE9rTk1scSKhQui1D6pI7ijObGRwVEnq_D52GELWFNuBBgC_6EJWPueg");'></div>
+</div>
+<div class="relative z-10 bg-gradient-to-r from-blue-900 to-primary text-[8px] text-white p-1 rounded-md shadow-sm border-l-2 border-accent-orange mx-1 mb-1">
+<div class="font-bold">0912...</div>
+<div class="opacity-80 scale-[0.8] origin-left">Nguyễn...</div>
+</div>
+<div class="absolute top-1 right-1 bg-primary text-white w-4 h-4 flex items-center justify-center rounded-full shadow-sm z-20">
+<span class="material-symbols-outlined text-[10px] font-bold">check</span>
+</div>
+</div>
+<p class="text-center text-xs font-bold mt-2 text-primary">Hiện đại</p>
+</div>
+<div class="flex-none snap-start group">
+<div class="w-24 h-24 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 flex flex-col justify-end gap-1 relative overflow-hidden shadow-sm cursor-pointer transition-transform active:scale-95">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700">
+<div class="w-full h-full bg-cover opacity-60" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6dTVTOWh82KfZCFC5KH8dlHr8UpdU92L1u-7YAvBRwB4wgeVCf0WGx2GHRhg99wW3cu8o7xkQIHi2fopHmxqmCR6FnJ0t7urhRPRiDngzEVV_BHK7GXEZKyWgpRc1qc1rR1NWqHFtat1Wex-rEk4-N82tBUSD91XKTWVbVF8NABGWDnI2zITpstDq_Pb8WEV7Exfuv_wta4PmKUEMatWrE9rTk1scSKhQui1D6pI7ijObGRwVEnq_D52GELWFNuBBgC_6EJWPueg");'></div>
+</div>
+<div class="relative z-10 border border-yellow-500 bg-black/60 text-[8px] text-yellow-500 p-1 font-serif text-center mx-1 mb-1">
+<div class="font-bold">0912...</div>
+</div>
+</div>
+<p class="text-center text-xs font-medium mt-2 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-300">Cổ điển</p>
+</div>
+<div class="flex-none snap-start group">
+<div class="w-24 h-24 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 flex flex-col justify-end gap-1 relative overflow-hidden shadow-sm cursor-pointer transition-transform active:scale-95">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-700">
+<div class="w-full h-full bg-cover opacity-60" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6dTVTOWh82KfZCFC5KH8dlHr8UpdU92L1u-7YAvBRwB4wgeVCf0WGx2GHRhg99wW3cu8o7xkQIHi2fopHmxqmCR6FnJ0t7urhRPRiDngzEVV_BHK7GXEZKyWgpRc1qc1rR1NWqHFtat1Wex-rEk4-N82tBUSD91XKTWVbVF8NABGWDnI2zITpstDq_Pb8WEV7Exfuv_wta4PmKUEMatWrE9rTk1scSKhQui1D6pI7ijObGRwVEnq_D52GELWFNuBBgC_6EJWPueg");'></div>
+</div>
+<div class="relative z-10 text-[10px] text-white font-bold drop-shadow-md text-right p-2">
+                                0912...
+                            </div>
+</div>
+<p class="text-center text-xs font-medium mt-2 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-300">Tối giản</p>
+</div>
+<div class="flex-none snap-start group">
+<div class="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-gray-400 text-3xl">add_circle</span>
+</div>
+<p class="text-center text-xs font-medium mt-2 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-300">Tùy chỉnh</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-2 space-y-3">
+<details class="group bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors select-none">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">feed</span>
+</div>
+<span class="font-semibold text-sm">Thông tin hiển thị</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0">
+<div class="border-t border-gray-100 dark:border-gray-800 mb-3"></div>
+<div class="space-y-1">
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium">Số điện thoại</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium">Tên hiển thị</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer opacity-70">
+<input class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium">Logo công ty</span>
+<span class="text-[9px] bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-1 py-0.5 rounded text-gray-500 font-bold tracking-tight">PRO</span>
+</div>
+</label>
+</div>
+</div>
+</details>
+<details class="group bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors select-none">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</div>
+<span class="font-semibold text-sm">Vị trí</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 flex justify-center">
+<div class="border-t border-gray-100 dark:border-gray-800 mb-4 w-full"></div>
+<div class="grid grid-cols-3 gap-3 w-40 mt-2">
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-gray-100 dark:bg-gray-800 border-2 border-transparent hover:border-primary/30 cursor-pointer transition-all"></div>
+<div class="aspect-square rounded-md bg-primary text-white flex items-center justify-center cursor-pointer shadow-lg ring-2 ring-offset-2 ring-primary dark:ring-offset-gray-900 transform scale-110">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors select-none">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-accent-orange">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</div>
+<span class="font-semibold text-sm">Tùy chỉnh</span>
+</div>
+<span class="material-symbols-outlined text-gray-400 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0">
+<div class="border-t border-gray-100 dark:border-gray-800 mb-4"></div>
+<div class="space-y-6">
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Độ mờ</span>
+<span class="text-xs font-bold text-accent-orange bg-orange-50 dark:bg-orange-900/30 px-2 py-1 rounded">80%</span>
+</div>
+<div class="relative h-6 flex items-center">
+<input class="absolute w-full z-20 opacity-0 cursor-pointer" max="100" min="0" type="range" value="80"/>
+<div class="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-accent-orange w-[80%]"></div>
+</div>
+<div class="absolute left-[80%] w-5 h-5 bg-white border-2 border-accent-orange rounded-full shadow-md -translate-x-1/2 pointer-events-none"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Cỡ chữ</span>
+<div class="flex items-center gap-1 bg-gray-50 dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700">
+<button class="w-9 h-9 flex items-center justify-center rounded hover:bg-white dark:hover:bg-gray-700 shadow-sm transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-10 text-center font-bold text-sm">14</span>
+<button class="w-9 h-9 flex items-center justify-center rounded hover:bg-white dark:hover:bg-gray-700 shadow-sm transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+<div>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-3">Màu sắc</span>
+<div class="flex justify-between gap-2">
+<div class="w-9 h-9 rounded-full bg-primary ring-2 ring-offset-2 ring-primary dark:ring-offset-gray-900 cursor-pointer transition-transform hover:scale-110"></div>
+<div class="w-9 h-9 rounded-full bg-white border border-gray-300 dark:bg-white dark:border-transparent cursor-pointer transition-transform hover:scale-110"></div>
+<div class="w-9 h-9 rounded-full bg-black border border-gray-200 dark:bg-black dark:border-gray-600 cursor-pointer transition-transform hover:scale-110"></div>
+<div class="w-9 h-9 rounded-full bg-accent-orange cursor-pointer transition-transform hover:scale-110"></div>
+<div class="w-9 h-9 rounded-full bg-teal-600 cursor-pointer transition-transform hover:scale-110"></div>
+<button class="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-dashed border-gray-400">
+<span class="material-symbols-outlined text-[16px] text-gray-500">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</details>
+<div class="pt-2">
+<button class="w-full py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl hover:border-primary/50 hover:bg-blue-50/50 dark:hover:bg-blue-900/10">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+                    Chọn ảnh khác
+                </button>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] z-40 pb-6 pt-4 px-4">
+<div class="max-w-md mx-auto space-y-4">
+<div class="flex gap-3">
+<button class="flex-[2] h-14 bg-accent-orange hover:bg-accent-orange-dark text-white rounded-2xl font-bold text-[17px] shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">download</span>
+                    Tải về (1 ảnh)
+                </button>
+<button class="flex-1 h-14 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded-2xl font-semibold text-[15px] flex items-center justify-center flex-col leading-none hover:bg-gray-50 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined mb-1 text-[20px]">folder_zip</span>
+                    Tải tất cả
+                </button>
+</div>
+<div class="flex items-center justify-between px-2 pt-1">
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Chia sẻ nhanh</span>
+<div class="flex gap-4">
+<button class="group flex flex-col items-center gap-1 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-[#1877F2] rounded-full flex items-center justify-center text-white shadow-md group-hover:shadow-lg transition-shadow">
+<span class="font-bold text-lg font-serif">f</span>
+</div>
+</button>
+<button class="group flex flex-col items-center gap-1 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-[#0068FF] rounded-full flex items-center justify-center text-white shadow-md group-hover:shadow-lg transition-shadow">
+<span class="font-bold text-[11px] tracking-tighter">Zalo</span>
+</div>
+</button>
+<button class="group flex flex-col items-center gap-1 active:scale-95 transition-transform">
+<div class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 shadow-sm border border-gray-200 dark:border-gray-600">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<div class="h-2"></div>
+</footer>
+
+</body></html>

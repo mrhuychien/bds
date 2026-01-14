@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đóng dấu Hình ảnh - Batdongsan.digital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1e3fae",
+              "background-light": "#f9fafb",
+              "background-dark": "#1f242e",
+              "accent-orange": "#F97316",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-dot {
+            box-shadow: 0 0 0 4px rgba(30, 63, 174, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#121317] dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#121317] dark:text-white cursor-pointer">arrow_back_ios</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight">Đóng dấu ảnh</h1>
+<button class="text-primary font-semibold text-sm">Làm mới</button>
+</nav>
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Main Workspace / Canvas -->
+<div class="p-4">
+<div class="relative aspect-[4/3] w-full bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm group">
+<div class="absolute inset-0 bg-center bg-cover bg-no-repeat" data-alt="Luxury modern villa exterior with pool" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6dTVTOWh82KfZCFC5KH8dlHr8UpdU92L1u-7YAvBRwB4wgeVCf0WGx2GHRhg99wW3cu8o7xkQIHi2fopHmxqmCR6FnJ0t7urhRPRiDngzEVV_BHK7GXEZKyWgpRc1qc1rR1NWqHFtat1Wex-rEk4-N82tBUSD91XKTWVbVF8NABGWDnI2zITpstDq_Pb8WEV7Exfuv_wta4PmKUEMatWrE9rTk1scSKhQui1D6pI7ijObGRwVEnq_D52GELWFNuBBgC_6EJWPueg");'>
+</div>
+<!-- Watermark Overlay Preview (Bottom Right Example) -->
+<div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 shadow-lg flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]">home</span>
+</div>
+<span class="text-[12px] font-bold text-[#121317]">090x xxx xxx</span>
+</div>
+<!-- Resize Handle Suggestion -->
+<div class="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-primary/50"></div>
+</div>
+<p class="text-center text-xs text-gray-500 mt-2 italic">Chạm và kéo để di chuyển vị trí dấu</p>
+</div>
+<!-- Tool Tabs -->
+<div class="px-4">
+<div class="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl mb-6">
+<button class="flex-1 py-2 text-sm font-bold rounded-lg bg-white dark:bg-gray-700 shadow-sm text-primary">Thêm Logo</button>
+<button class="flex-1 py-2 text-sm font-bold text-gray-500 dark:text-gray-400">Số điện thoại</button>
+</div>
+</div>
+<!-- Adjustment Controls -->
+<div class="px-4 space-y-6">
+<!-- Input Field for Phone -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Nội dung hiển thị</label>
+<div class="relative">
+<input class="w-full h-14 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 text-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Nhập số điện thoại..." type="text" value="0901 234 567"/>
+<span class="material-symbols-outlined absolute right-4 top-4 text-gray-400">edit</span>
+</div>
+</div>
+<!-- Position Grid -->
+<div class="space-y-3">
+<p class="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Vị trí dấu</p>
+<div class="grid grid-cols-3 gap-2 w-48">
+<!-- 3x3 Grid -->
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer border-2 border-transparent"></div>
+<div class="aspect-square bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center cursor-pointer border-2 border-primary">
+<div class="size-2 bg-primary rounded-full active-dot"></div>
+</div>
+</div>
+</div>
+<!-- Sliders Container -->
+<div class="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 space-y-6">
+<!-- Opacity Slider -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium">Độ mờ</span>
+<span class="text-sm font-bold text-primary">85%</span>
+</div>
+<div class="relative flex items-center h-2 w-full bg-gray-100 dark:bg-gray-800 rounded-full">
+<div class="absolute h-full bg-primary rounded-full" style="width: 85%;"></div>
+<div class="absolute size-5 bg-white border-2 border-primary rounded-full shadow-md" style="left: calc(85% - 10px);"></div>
+</div>
+</div>
+<!-- Size Slider -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium">Kích thước</span>
+<span class="text-sm font-bold text-primary">24px</span>
+</div>
+<div class="relative flex items-center h-2 w-full bg-gray-100 dark:bg-gray-800 rounded-full">
+<div class="absolute h-full bg-primary rounded-full" style="width: 40%;"></div>
+<div class="absolute size-5 bg-white border-2 border-primary rounded-full shadow-md" style="left: calc(40% - 10px);"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Footer -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 p-4 pb-8">
+<div class="max-w-md mx-auto flex gap-3">
+<button class="flex-1 h-14 rounded-xl border-2 border-gray-200 dark:border-gray-700 font-bold text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">visibility</span>
+                Xem thử
+            </button>
+<button class="flex-[2] h-14 rounded-xl bg-accent-orange hover:bg-orange-600 text-white font-bold text-lg shadow-lg shadow-orange-200 dark:shadow-none transition-transform active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                Xuất ảnh &amp; Lưu
+            </button>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cá nhân &amp; Cài đặt - Batdongsan.digital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1e3fae",
+              "background-light": "#f9fafb",
+              "background-dark": "#121317",
+              "surface-dark": "#1c1f26",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#121317] dark:text-gray-100 transition-colors duration-200">
+<div class="max-w-[430px] mx-auto min-h-screen flex flex-col relative pb-20">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Cá nhân &amp; Cài đặt</h1>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="flex-1 px-4 space-y-6">
+<!-- ProfileHeader -->
+<section class="mt-4 p-5 bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 flex items-center gap-4">
+<div class="relative">
+<div class="size-20 rounded-full bg-cover bg-center border-2 border-primary/20" data-alt="Chân dung chuyên viên tư vấn bất động sản chuyên nghiệp" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCohIzJW6yory_AnpD6y0TTXEvfOwOkgrUYMvsioVq0D3Bak3jiLTj19h9jfFzpFNrVRRh5sNtnKqlaQxOgRgyJRGscKHijEgcfykAgbuHZWwWe9irkeoNp1dEWGpRDGP006hiVIDnKD8ZmDjBsIS1yXPQSXRevulRltz1unBcasEqOTisdeV9t49dajCT_0NeYvyyYWphT7DJo5I6U224jF4mOT-Yu2pSKfgeUg0-BVZ4N2E3PpCdFmyma8eIKXpby3UNRDI2Qyc0");'>
+</div>
+<div class="absolute bottom-0 right-0 size-6 bg-primary rounded-full border-2 border-white dark:border-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white">edit</span>
+</div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-lg font-bold leading-tight">Nguyễn Văn An</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Chuyên viên tư vấn</p>
+<div class="flex items-center mt-1 gap-1">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+<span class="text-xs text-primary font-semibold">Batdongsan.digital</span>
+</div>
+</div>
+</section>
+<!-- Account Section -->
+<div class="space-y-2">
+<h3 class="px-2 text-xs font-bold uppercase tracking-wider text-gray-400">Tài khoản &amp; Thương hiệu</h3>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<!-- ListItem: Microsite -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors group">
+<div class="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div class="flex-1">
+<p class="text-[15px] font-semibold">Cấu hình Microsite</p>
+<p class="text-xs text-gray-400">Quản lý trang cá nhân của bạn</p>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 mx-4"></div>
+<!-- ListItem: Member Pack -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors group">
+<div class="size-10 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div class="flex-1">
+<p class="text-[15px] font-semibold">Gói thành viên</p>
+<p class="text-xs text-amber-600/80 font-medium">Gói Pro - 24 ngày còn lại</p>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-amber-600 transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Settings Section -->
+<div class="space-y-2">
+<h3 class="px-2 text-xs font-bold uppercase tracking-wider text-gray-400">Cài đặt hệ thống</h3>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+<!-- Dark Mode Toggle -->
+<div class="flex items-center gap-4 px-4 min-h-[64px]">
+<div class="size-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 flex items-center justify-center">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<div class="flex-1">
+<p class="text-[15px] font-semibold">Chế độ tối</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 mx-4"></div>
+<!-- ListItem: Instructions -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors group">
+<div class="size-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="flex-1">
+<p class="text-[15px] font-semibold">Hướng dẫn sử dụng</p>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-emerald-600 transition-colors">chevron_right</span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-800 mx-4"></div>
+<!-- Logout -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] hover:bg-red-50 dark:hover:bg-red-900/10 cursor-pointer transition-colors group">
+<div class="size-10 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<div class="flex-1">
+<p class="text-[15px] font-semibold text-red-500">Đăng xuất</p>
+</div>
+</div>
+</div>
+</div>
+<!-- App Info -->
+<div class="pt-4 pb-8 text-center">
+<p class="text-xs text-gray-400 font-medium tracking-wide">BATDONGSAN.DIGITAL VERSION 2.4.0</p>
+<p class="text-[10px] text-gray-300 mt-1 uppercase">Made for Real Estate Professionals</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (iOS Style) -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white/90 dark:bg-surface-dark/90 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 h-20 px-6 flex items-center justify-between z-50">
+<div class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Trang chủ</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-bold">Tìm kiếm</span>
+</div>
+<!-- FAB style center item -->
+<div class="relative -top-6">
+<div class="size-14 rounded-full bg-primary shadow-lg shadow-primary/30 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-bold">Tin nhắn</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">Cá nhân</span>
+</div>
+</nav>
+</div>
+</body></html>
