@@ -1,32 +1,73 @@
+'use client'
+
+import { useState } from 'react'
+import { formatPrice } from '@/lib/utils/format'
+import { PROPERTY_STATUS } from '@/lib/constants'
+
 interface MicrositeHeroProps {
   thumbnailUrl: string | null
   title: string
   images?: string[]
+  price: number
+  status?: string
 }
 
-export function MicrositeHero({ thumbnailUrl, title, images }: MicrositeHeroProps) {
-  const displayImage = thumbnailUrl || images?.[0]
+export function MicrositeHero({ thumbnailUrl, title, images, price, status = 'available' }: MicrositeHeroProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const allImages = images && images.length > 0 ? images : (thumbnailUrl ? [thumbnailUrl] : [])
+  const displayImage = allImages[currentIndex]
+  const statusLabel = status as keyof typeof PROPERTY_STATUS
 
   return (
-    <div className="aspect-video bg-muted relative">
-      {displayImage ? (
-        <img
-          src={displayImage}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
+    <div className="relative w-full aspect-[4/3] px-4 mt-2">
+      <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-xl">
+        {displayImage ? (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 30%), url('${displayImage}')`
+            }}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-muted flex items-center justify-center">
+            <span className="material-symbols-outlined text-6xl text-muted-foreground">image</span>
+          </div>
+        )}
+
+        {/* Price Badge */}
+        <div className="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-xl font-bold text-lg shadow-lg flex items-center gap-2">
+          <span className="material-symbols-outlined text-sm">payments</span>
+          {formatPrice(price)}
         </div>
-      )}
-      {images && images.length > 1 && (
-        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/60 text-white text-xs rounded">
-          +{images.length - 1} ảnh
+
+        {/* Status Badge */}
+        <div className={`absolute top-4 right-4 text-white px-3 py-1.5 rounded-lg font-semibold text-xs flex items-center gap-1 shadow-md ${
+          status === 'available' ? 'bg-emerald-500' :
+          status === 'deposited' ? 'bg-yellow-500' :
+          status === 'sold' ? 'bg-red-500' : 'bg-blue-500'
+        }`}>
+          <span className="size-2 bg-white rounded-full animate-pulse"></span>
+          {PROPERTY_STATUS[statusLabel] || 'Đang bán'}
         </div>
-      )}
+
+        {/* Gallery Indicators */}
+        {allImages.length > 1 && (
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full">
+            {allImages.slice(0, 5).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`size-1.5 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-white' : 'bg-white/40'
+                }`}
+              />
+            ))}
+            <span className="text-[10px] text-white font-medium ml-1">
+              {currentIndex + 1}/{allImages.length}
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { formatPrice } from '@/lib/utils/format'
-import { PROPERTY_TYPES } from '@/lib/constants'
+import { PROPERTY_TYPES, DIRECTIONS, LEGAL_STATUS } from '@/lib/constants'
 import {
   MicrositeHero,
   PropertyQuickInfo,
-  PropertyDetails,
   PropertyFeatures,
   AgentFooter,
 } from '@/components/microsite'
@@ -56,74 +54,93 @@ export default async function MicrositePage({ params }: MicrositePageProps) {
     notFound()
   }
 
-  const agent = property.profiles as {
-    full_name: string
-    phone: string
-    avatar_url: string | null
-    company_name: string | null
-    title: string
-    zalo_link: string | null
-    facebook_link: string | null
-  }
-
+  const agent = property.profiles as AgentProfile
   const propertyType = property.property_type as keyof typeof PROPERTY_TYPES
+  const direction = property.direction as keyof typeof DIRECTIONS
+  const legalStatus = property.legal_status as keyof typeof LEGAL_STATUS
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Image */}
+    <div className="min-h-screen bg-background pb-24">
+      {/* Top Navigation Bar */}
+      <div className="sticky top-0 z-50 flex items-center bg-background/80 backdrop-blur-md p-4 justify-between border-b border-border">
+        <div className="flex items-center gap-3">
+          <div className="size-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors cursor-pointer">
+            <span className="material-symbols-outlined">arrow_back_ios_new</span>
+          </div>
+          <h2 className="text-base font-bold leading-tight">Chi tiết bất động sản</h2>
+        </div>
+        <div className="flex gap-2">
+          <button className="flex size-10 items-center justify-center rounded-full bg-muted">
+            <span className="material-symbols-outlined">share</span>
+          </button>
+          <button className="flex size-10 items-center justify-center rounded-full bg-muted">
+            <span className="material-symbols-outlined">favorite</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Hero Image Gallery */}
       <MicrositeHero
         thumbnailUrl={property.thumbnail_url}
         title={property.title}
         images={property.images ?? undefined}
+        price={property.price}
+        status={property.status}
       />
 
-      {/* Content */}
-      <div className="p-4 space-y-6">
-        {/* Title & Price */}
-        <div>
-          <span className="inline-block px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded mb-2">
-            {PROPERTY_TYPES[propertyType] || propertyType}
-          </span>
-          <h1 className="text-xl font-bold">{property.title}</h1>
-          <p className="text-2xl font-bold text-primary mt-1">
-            {formatPrice(property.price)}
-            {property.is_negotiable && (
-              <span className="text-sm font-normal text-muted-foreground ml-2">
-                (thương lượng)
-              </span>
-            )}
-          </p>
+      {/* Main Content */}
+      <div className="px-4 py-6">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {legalStatus && (
+            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+              {LEGAL_STATUS[legalStatus]}
+            </span>
+          )}
+          {direction && (
+            <span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-semibold">
+              Hướng {DIRECTIONS[direction]}
+            </span>
+          )}
         </div>
 
-        {/* Quick Info */}
-        <PropertyQuickInfo
-          area={property.area}
-          bedrooms={property.bedrooms}
-          bathrooms={property.bathrooms}
-          floors={property.floors}
-        />
+        {/* Title */}
+        <h1 className="text-2xl font-bold leading-tight mb-2">{property.title}</h1>
 
-        {/* Details */}
-        <PropertyDetails
-          district={property.district}
-          street={property.street}
-          floors={property.floors}
-          frontage={property.frontage}
-          direction={property.direction}
-          legalStatus={property.legal_status}
-        />
+        {/* Location */}
+        <div className="flex items-center text-muted-foreground text-sm mb-6">
+          <span className="material-symbols-outlined text-base mr-1">location_on</span>
+          {property.district}, {property.street && `${property.street} • `}
+          {property.area && `${property.area}m² sàn`}
+        </div>
 
-        {/* Description */}
+        {/* Stats Grid */}
+        <div className="mb-8">
+          <PropertyQuickInfo
+            area={property.area}
+            bedrooms={property.bedrooms}
+            bathrooms={property.bathrooms}
+            floors={property.floors}
+          />
+        </div>
+
+        {/* Description Section */}
         {property.description && (
-          <div className="space-y-3">
-            <h2 className="font-semibold">Mô tả</h2>
-            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-              {property.description}
+          <section className="mb-8">
+            <h3 className="text-lg font-bold mb-3">Mô tả chi tiết</h3>
+            <p className="text-muted-foreground leading-relaxed text-sm whitespace-pre-wrap">
+              {property.description.slice(0, 200)}
+              {property.description.length > 200 && (
+                <>
+                  ...
+                  <button className="text-primary font-semibold ml-1">Xem thêm</button>
+                </>
+              )}
             </p>
-          </div>
+          </section>
         )}
 
-        {/* Features */}
+        {/* Amenities Section */}
         <PropertyFeatures features={property.features || []} />
       </div>
 

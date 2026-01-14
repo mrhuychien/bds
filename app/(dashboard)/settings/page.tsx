@@ -4,16 +4,13 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { PageHeader } from '@/components/shared/page-header'
-import { HCM_DISTRICTS } from '@/lib/constants'
 import type { Profile } from '@/types/database'
 
 export default function SettingsPage() {
   const router = useRouter()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
-  const [editing, setEditing] = useState(false)
-  const [saving, setSaving] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
     async function loadProfile() {
@@ -35,47 +32,6 @@ export default function SettingsPage() {
     loadProfile()
   }, [])
 
-  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!profile) return
-
-    setSaving(true)
-    const formData = new FormData(e.currentTarget)
-    const supabase = createClient()
-
-    try {
-      const { error } = await (supabase.from('profiles') as any)
-        .update({
-          full_name: formData.get('full_name') as string,
-          phone: formData.get('phone') as string,
-          company_name: formData.get('company_name') as string || null,
-          title: formData.get('title') as string || null,
-          bio: formData.get('bio') as string || null,
-          zalo_link: formData.get('zalo_link') as string || null,
-          facebook_link: formData.get('facebook_link') as string || null,
-          working_areas: formData.getAll('working_areas') as string[],
-        })
-        .eq('id', profile.id)
-
-      if (error) throw error
-
-      // Reload profile
-      const { data } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', profile.id)
-        .single()
-
-      setProfile(data)
-      setEditing(false)
-    } catch (error) {
-      console.error('Save error:', error)
-      alert('Không thể lưu thông tin')
-    } finally {
-      setSaving(false)
-    }
-  }
-
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
@@ -85,266 +41,171 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <div>
-        <PageHeader title="Cài đặt" />
-        <div className="p-4 text-center text-muted-foreground">
-          Đang tải...
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-muted border-t-primary rounded-full animate-spin" />
       </div>
     )
   }
 
   return (
-    <div className="pb-6">
-      <PageHeader
-        title="Cài đặt"
-        action={
-          !editing && (
-            <button
-              onClick={() => setEditing(true)}
-              className="text-sm text-primary"
-            >
-              Chỉnh sửa
-            </button>
-          )
-        }
-      />
+    <div className="pb-24">
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center justify-center size-10 rounded-full hover:bg-muted transition-colors"
+          >
+            <span className="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+          </button>
+          <h1 className="text-xl font-bold tracking-tight">Cá nhân & Cài đặt</h1>
+        </div>
+        <button className="size-10 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+          <span className="material-symbols-outlined">notifications</span>
+        </button>
+      </header>
 
-      {editing ? (
-        <form onSubmit={handleSave} className="p-4 space-y-6">
-          {/* Basic Info */}
-          <section className="space-y-4">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Thông tin cơ bản
-            </h2>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Họ tên *</label>
-              <input
-                name="full_name"
-                type="text"
-                required
-                defaultValue={profile?.full_name}
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
+      <main className="px-4 space-y-6">
+        {/* Profile Header */}
+        <section className="mt-4 p-5 bg-card rounded-xl shadow-sm border border-border flex items-center gap-4">
+          <div className="relative">
+            <div className="size-20 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-primary/20">
+              <span className="material-symbols-outlined text-4xl text-primary">person</span>
             </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Số điện thoại *</label>
-              <input
-                name="phone"
-                type="tel"
-                required
-                defaultValue={profile?.phone}
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Email</label>
-              <input
-                type="email"
-                value={profile?.email || ''}
-                disabled
-                className="w-full px-3 py-2 border rounded-md text-sm bg-muted"
-              />
-              <p className="text-xs text-muted-foreground">Email không thể thay đổi</p>
-            </div>
-          </section>
-
-          {/* Professional Info */}
-          <section className="space-y-4">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Thông tin nghề nghiệp
-            </h2>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Công ty/Sàn</label>
-              <input
-                name="company_name"
-                type="text"
-                defaultValue={profile?.company_name || ''}
-                placeholder="VD: Sàn BĐS ABC"
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Chức danh</label>
-              <input
-                name="title"
-                type="text"
-                defaultValue={profile?.title || ''}
-                placeholder="VD: Chuyên viên tư vấn BĐS"
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Giới thiệu bản thân</label>
-              <textarea
-                name="bio"
-                rows={3}
-                defaultValue={profile?.bio || ''}
-                placeholder="Viết vài dòng về bạn..."
-                className="w-full px-3 py-2 border rounded-md text-sm resize-none"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Khu vực hoạt động</label>
-              <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
-                {HCM_DISTRICTS.slice(0, 15).map((district) => (
-                  <label key={district} className="flex items-center gap-1.5">
-                    <input
-                      type="checkbox"
-                      name="working_areas"
-                      value={district}
-                      defaultChecked={profile?.working_areas?.includes(district)}
-                      className="rounded"
-                    />
-                    <span className="text-sm">{district}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Social Links */}
-          <section className="space-y-4">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Liên kết mạng xã hội
-            </h2>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Zalo</label>
-              <input
-                name="zalo_link"
-                type="url"
-                defaultValue={profile?.zalo_link || ''}
-                placeholder="https://zalo.me/..."
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Facebook</label>
-              <input
-                name="facebook_link"
-                type="url"
-                defaultValue={profile?.facebook_link || ''}
-                placeholder="https://facebook.com/..."
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-          </section>
-
-          {/* Actions */}
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={() => setEditing(false)}
-              className="flex-1 py-2.5 px-4 border rounded-md text-sm font-medium"
-            >
-              Hủy
-            </button>
-            <button
-              type="submit"
-              disabled={saving}
-              className="flex-1 py-2.5 px-4 bg-primary text-primary-foreground rounded-md text-sm font-medium disabled:opacity-50"
-            >
-              {saving ? 'Đang lưu...' : 'Lưu thay đổi'}
-            </button>
-          </div>
-        </form>
-      ) : (
-        <div className="p-4 space-y-6">
-          {/* Profile Section */}
-          <section className="space-y-3">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Thông tin cá nhân
-            </h2>
-            <div className="bg-card border rounded-lg divide-y">
-              <div className="p-3 flex items-center justify-between">
-                <span className="text-sm">Họ tên</span>
-                <span className="text-sm text-muted-foreground">{profile?.full_name || '-'}</span>
-              </div>
-              <div className="p-3 flex items-center justify-between">
-                <span className="text-sm">Số điện thoại</span>
-                <span className="text-sm text-muted-foreground">{profile?.phone || '-'}</span>
-              </div>
-              <div className="p-3 flex items-center justify-between">
-                <span className="text-sm">Email</span>
-                <span className="text-sm text-muted-foreground">{profile?.email || '-'}</span>
-              </div>
-              <div className="p-3 flex items-center justify-between">
-                <span className="text-sm">Công ty</span>
-                <span className="text-sm text-muted-foreground">{profile?.company_name || '-'}</span>
-              </div>
-              <div className="p-3 flex items-center justify-between">
-                <span className="text-sm">Chức danh</span>
-                <span className="text-sm text-muted-foreground">{profile?.title || '-'}</span>
-              </div>
-            </div>
-          </section>
-
-          {/* Working Areas */}
-          {profile?.working_areas && profile.working_areas.length > 0 && (
-            <section className="space-y-3">
-              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                Khu vực hoạt động
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {profile.working_areas.map((area) => (
-                  <span key={area} className="px-2 py-1 bg-muted rounded text-sm">
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Watermark Settings */}
-          <section className="space-y-3">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Công cụ
-            </h2>
             <Link
-              href="/tools/watermark"
-              className="flex items-center justify-between bg-card border rounded-lg p-3 hover:bg-muted/50"
+              href="/settings/edit"
+              className="absolute bottom-0 right-0 size-6 bg-primary rounded-full border-2 border-background flex items-center justify-center"
             >
-              <div>
-                <p className="font-medium text-sm">Watermark Tool</p>
-                <p className="text-xs text-muted-foreground">
-                  Đóng dấu ảnh BĐS với thông tin liên hệ
-                </p>
-              </div>
-              <svg className="w-5 h-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <span className="material-symbols-outlined text-[14px] text-white">edit</span>
             </Link>
-          </section>
+          </div>
+          <div className="flex flex-col">
+            <h2 className="text-lg font-bold leading-tight">{profile?.full_name || 'Chưa cập nhật'}</h2>
+            <p className="text-sm text-muted-foreground font-medium">{profile?.title || 'Chuyên viên tư vấn'}</p>
+            <div className="flex items-center mt-1 gap-1">
+              <span className="material-symbols-outlined text-sm text-primary">verified</span>
+              <span className="text-xs text-primary font-semibold">Batdongsan.digital</span>
+            </div>
+          </div>
+        </section>
 
-          {/* Account */}
-          <section className="space-y-3">
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-              Tài khoản
-            </h2>
-            <button
-              onClick={handleLogout}
-              className="w-full py-2.5 px-4 border border-destructive text-destructive rounded-md text-sm font-medium hover:bg-destructive/10"
+        {/* Account & Brand Section */}
+        <div className="space-y-2">
+          <h3 className="px-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Tài khoản & Thương hiệu</h3>
+          <div className="bg-card rounded-xl border border-border overflow-hidden">
+            {/* Microsite Config */}
+            <Link
+              href="/settings/microsite"
+              className="flex items-center gap-4 px-4 min-h-[64px] hover:bg-muted/50 transition-colors group"
             >
-              Đăng xuất
-            </button>
-          </section>
+              <div className="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-primary flex items-center justify-center">
+                <span className="material-symbols-outlined">public</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold">Cấu hình Microsite</p>
+                <p className="text-xs text-muted-foreground">Quản lý trang cá nhân của bạn</p>
+              </div>
+              <span className="material-symbols-outlined text-muted-foreground/50 group-hover:text-primary transition-colors">chevron_right</span>
+            </Link>
 
-          {/* App Info */}
-          <div className="text-center text-xs text-muted-foreground pt-4">
-            <p>BatDongSan.Digital v0.1.0</p>
-            <p>Personal OS cho Môi giới BĐS</p>
+            <div className="h-px bg-border mx-4"></div>
+
+            {/* Member Pack */}
+            <Link
+              href="/settings/membership"
+              className="flex items-center gap-4 px-4 min-h-[64px] hover:bg-muted/50 transition-colors group"
+            >
+              <div className="size-10 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center">
+                <span className="material-symbols-outlined">workspace_premium</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold">Gói thành viên</p>
+                <p className="text-xs text-amber-600/80 font-medium">Gói Free - Nâng cấp ngay</p>
+              </div>
+              <span className="material-symbols-outlined text-muted-foreground/50 group-hover:text-amber-600 transition-colors">chevron_right</span>
+            </Link>
           </div>
         </div>
-      )}
+
+        {/* System Settings Section */}
+        <div className="space-y-2">
+          <h3 className="px-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Cài đặt hệ thống</h3>
+          <div className="bg-card rounded-xl border border-border overflow-hidden">
+            {/* Dark Mode Toggle */}
+            <div className="flex items-center gap-4 px-4 min-h-[64px]">
+              <div className="size-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 flex items-center justify-center">
+                <span className="material-symbols-outlined">dark_mode</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold">Chế độ tối</p>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={(e) => setDarkMode(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              </label>
+            </div>
+
+            <div className="h-px bg-border mx-4"></div>
+
+            {/* Watermark Tool */}
+            <Link
+              href="/tools/watermark"
+              className="flex items-center gap-4 px-4 min-h-[64px] hover:bg-muted/50 transition-colors group"
+            >
+              <div className="size-10 rounded-lg bg-orange-50 dark:bg-orange-900/20 text-accent flex items-center justify-center">
+                <span className="material-symbols-outlined">photo_camera</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold">Đóng dấu ảnh</p>
+                <p className="text-xs text-muted-foreground">Thêm watermark cho ảnh BĐS</p>
+              </div>
+              <span className="material-symbols-outlined text-muted-foreground/50 group-hover:text-accent transition-colors">chevron_right</span>
+            </Link>
+
+            <div className="h-px bg-border mx-4"></div>
+
+            {/* Instructions */}
+            <Link
+              href="/settings/guide"
+              className="flex items-center gap-4 px-4 min-h-[64px] hover:bg-muted/50 transition-colors group"
+            >
+              <div className="size-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center">
+                <span className="material-symbols-outlined">menu_book</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold">Hướng dẫn sử dụng</p>
+              </div>
+              <span className="material-symbols-outlined text-muted-foreground/50 group-hover:text-emerald-600 transition-colors">chevron_right</span>
+            </Link>
+
+            <div className="h-px bg-border mx-4"></div>
+
+            {/* Logout */}
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-4 px-4 min-h-[64px] hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+            >
+              <div className="size-10 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center">
+                <span className="material-symbols-outlined">logout</span>
+              </div>
+              <div className="flex-1 text-left">
+                <p className="text-[15px] font-semibold text-red-500">Đăng xuất</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* App Info */}
+        <div className="pt-4 pb-8 text-center">
+          <p className="text-xs text-muted-foreground font-medium tracking-wide">BATDONGSAN.DIGITAL VERSION 2.4.0</p>
+          <p className="text-[10px] text-muted-foreground/60 mt-1 uppercase">Made for Real Estate Professionals</p>
+        </div>
+      </main>
     </div>
   )
 }
