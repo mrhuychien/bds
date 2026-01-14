@@ -1,102 +1,116 @@
 import Link from 'next/link'
 import type { Property } from '@/types/database'
 import { formatPrice, formatArea } from '@/lib/utils/format'
-import { PROPERTY_TYPES, PROPERTY_STATUS } from '@/lib/constants'
+import { PROPERTY_STATUS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 interface PropertyCardProps {
   property: Property
 }
 
-const statusColors = {
-  available: 'bg-green-100 text-green-700',
-  deposited: 'bg-yellow-100 text-yellow-700',
-  sold: 'bg-gray-100 text-gray-700',
-  rented: 'bg-blue-100 text-blue-700',
+// Badge colors based on status and listing type
+const getBadgeStyle = (property: Property) => {
+  if (property.listing_type === 'rent') {
+    return { label: 'Thuê', className: 'bg-blue-500' }
+  }
+  switch (property.status) {
+    case 'available':
+      return { label: 'Hot', className: 'bg-accent' }
+    case 'deposited':
+      return { label: 'Đã cọc', className: 'bg-yellow-500' }
+    case 'sold':
+      return { label: 'Đã bán', className: 'bg-gray-500' }
+    case 'rented':
+      return { label: 'Đã thuê', className: 'bg-gray-500' }
+    default:
+      return { label: 'Mới', className: 'bg-emerald-500' }
+  }
+}
+
+// Format time ago
+const formatTimeAgo = (date: string) => {
+  const now = new Date()
+  const created = new Date(date)
+  const diffMs = now.getTime() - created.getTime()
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffHours < 1) return 'Vừa đăng'
+  if (diffHours < 24) return `${diffHours} giờ trước`
+  if (diffDays === 1) return 'Hôm qua'
+  if (diffDays < 7) return `${diffDays} ngày trước`
+  return created.toLocaleDateString('vi-VN')
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
-  const status = property.status as keyof typeof PROPERTY_STATUS
-  const propertyType = property.property_type as keyof typeof PROPERTY_TYPES
+  const badge = getBadgeStyle(property)
 
   return (
     <Link href={`/inventory/${property.id}`}>
-      <div className="bg-card border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-        {/* Thumbnail */}
-        <div className="aspect-video bg-muted relative">
-          {property.thumbnail_url ? (
-            <img
-              src={property.thumbnail_url}
-              alt={property.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+      <div className="flex flex-col gap-3 p-3 rounded-xl bg-card shadow-md border border-border/50 hover:shadow-lg transition-shadow">
+        <div className="flex gap-4">
+          {/* Thumbnail */}
+          <div className="relative w-28 h-28 shrink-0 rounded-lg overflow-hidden bg-muted">
+            {/* Status Badge */}
+            <div className="absolute top-2 left-2 z-10">
+              <span className={cn(
+                'px-2 py-0.5 text-white text-[10px] font-bold rounded uppercase',
+                badge.className
+              )}>
+                {badge.label}
+              </span>
             </div>
-          )}
-          {/* Status Badge */}
-          <span
-            className={cn(
-              'absolute top-2 right-2 px-2 py-0.5 rounded text-xs font-medium',
-              statusColors[status] || statusColors.available
+            {property.thumbnail_url ? (
+              <img
+                src={property.thumbnail_url}
+                alt={property.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                <span className="material-symbols-outlined text-3xl">home</span>
+              </div>
             )}
-          >
-            {PROPERTY_STATUS[status] || status}
-          </span>
+          </div>
+
+          {/* Content */}
+          <div className="flex flex-col justify-between flex-1 py-0.5">
+            <div>
+              <h3 className="text-primary font-bold text-base leading-tight line-clamp-2">
+                {property.title}
+              </h3>
+              {property.district && (
+                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                  <span className="material-symbols-outlined text-xs">location_on</span>
+                  {property.district}, HCM
+                </p>
+              )}
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-accent text-lg font-bold">
+                {formatPrice(property.price)}
+              </span>
+              {property.area && (
+                <span className="text-xs text-muted-foreground">
+                  • {formatArea(property.area)}
+                </span>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-3 space-y-2">
-          <h3 className="font-medium text-sm line-clamp-1">{property.title}</h3>
+        {/* Divider */}
+        <div className="h-px bg-border w-full" />
 
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="bg-muted px-1.5 py-0.5 rounded">
-              {PROPERTY_TYPES[propertyType] || propertyType}
-            </span>
-            {property.district && <span>{property.district}</span>}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-primary font-semibold">
-              {formatPrice(property.price)}
-            </span>
-            {property.area && (
-              <span className="text-xs text-muted-foreground">
-                {formatArea(property.area)}
-              </span>
-            )}
-          </div>
-
-          {/* Quick stats */}
-          <div className="flex items-center gap-3 text-xs text-muted-foreground pt-1 border-t">
-            {property.bedrooms && (
-              <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                {property.bedrooms} PN
-              </span>
-            )}
-            {property.bathrooms && (
-              <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                </svg>
-                {property.bathrooms} WC
-              </span>
-            )}
-            {property.floors && (
-              <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" />
-                </svg>
-                {property.floors} tầng
-              </span>
-            )}
-          </div>
+        {/* Footer */}
+        <div className="flex justify-between items-center">
+          <span className="text-[10px] text-muted-foreground">
+            {formatTimeAgo(property.created_at)}
+          </span>
+          <span className="flex items-center gap-1 text-primary text-sm font-semibold">
+            Chi tiết
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </span>
         </div>
       </div>
     </Link>
