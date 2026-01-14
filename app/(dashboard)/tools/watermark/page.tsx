@@ -41,12 +41,13 @@ export default function WatermarkPage() {
           .select('*')
           .eq('id', user.id)
           .single()
-        if (data) {
-          setProfile(data)
+        const profileData = data as Profile | null
+        if (profileData) {
+          setProfile(profileData)
           setSettings(prev => ({
             ...prev,
-            text: data.full_name || prev.text,
-            phone: data.phone || prev.phone,
+            text: profileData.full_name || prev.text,
+            phone: profileData.phone || prev.phone,
           }))
         }
       }
@@ -309,7 +310,7 @@ export default function WatermarkPage() {
             <li>• Chọn vị trí watermark phù hợp với bố cục ảnh</li>
             <li>• Điều chỉnh độ đậm để không che quá nhiều nội dung</li>
             <li>• Nên thêm số điện thoại để khách dễ liên hệ</li>
-            <li>• Nhấn "Xem trước" trước khi lưu để kiểm tra</li>
+            <li>• Nhấn &quot;Xem trước&quot; trước khi lưu để kiểm tra</li>
           </ul>
         </div>
       </div>

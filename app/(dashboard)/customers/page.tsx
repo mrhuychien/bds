@@ -3,16 +3,19 @@ import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/shared/page-header'
 import { EmptyState } from '@/components/shared/empty-state'
 import { CustomerCard } from '@/components/customer'
+import type { Customer } from '@/types/database'
 
 export default async function CustomersPage() {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  const { data: customers } = await supabase
+  const { data: customersData } = await supabase
     .from('customers')
     .select('*')
-    .eq('owner_id', user?.id)
+    .eq('owner_id', user?.id ?? '')
     .order('created_at', { ascending: false })
+
+  const customers = customersData as Customer[] | null
 
   return (
     <div>

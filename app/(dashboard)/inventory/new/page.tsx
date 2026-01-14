@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { PageHeader } from '@/components/shared/page-header'
 import { PROPERTY_TYPES, LISTING_TYPES, DIRECTIONS, LEGAL_STATUS, HCM_DISTRICTS } from '@/lib/constants'
+import type { InsertTables } from '@/types/database'
 
 export default function NewPropertyPage() {
   const router = useRouter()
@@ -27,7 +28,7 @@ export default function NewPropertyPage() {
     }
 
     try {
-      const { error } = await supabase.from('properties').insert({
+      const propertyData: InsertTables<'properties'> = {
         owner_id: user.id,
         title: formData.get('title') as string,
         property_type: formData.get('property_type') as string,
@@ -43,7 +44,10 @@ export default function NewPropertyPage() {
         legal_status: formData.get('legal_status') as string || null,
         description: formData.get('description') as string || null,
         source: formData.get('source') as string || null,
-      })
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error } = await (supabase.from('properties') as any).insert(propertyData)
 
       if (error) throw error
 

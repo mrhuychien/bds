@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { formatPhone, formatDate, formatRelativeTime, formatPrice } from '@/lib/utils/format'
 import { CUSTOMER_TYPES, CUSTOMER_STATUS, CUSTOMER_PRIORITY, PROPERTY_TYPES } from '@/lib/constants'
+import type { Customer, CustomerInteraction } from '@/types/database'
 
 interface CustomerDetailPageProps {
   params: { id: string }
@@ -12,24 +13,32 @@ export default async function CustomerDetailPage({ params }: CustomerDetailPageP
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  const { data: customer } = await supabase
+  if (!user) {
+    notFound()
+  }
+
+  const { data: customerData } = await supabase
     .from('customers')
     .select('*')
     .eq('id', params.id)
-    .eq('owner_id', user?.id)
+    .eq('owner_id', user.id)
     .single()
+
+  const customer = customerData as Customer | null
 
   if (!customer) {
     notFound()
   }
 
   // Fetch interactions
-  const { data: interactions } = await supabase
+  const { data: interactionsData } = await supabase
     .from('customer_interactions')
     .select('*')
     .eq('customer_id', params.id)
     .order('created_at', { ascending: false })
     .limit(10)
+
+  const interactions = interactionsData as CustomerInteraction[] | null
 
   const customerType = customer.customer_type as keyof typeof CUSTOMER_TYPES
   const status = customer.status as keyof typeof CUSTOMER_STATUS

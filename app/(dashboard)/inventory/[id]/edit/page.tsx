@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { PROPERTY_TYPES, PROPERTY_STATUS, LISTING_TYPES, DIRECTIONS, LEGAL_STATUS, HCM_DISTRICTS, COMMON_FEATURES } from '@/lib/constants'
-import type { Property } from '@/types/database'
+import type { Property, UpdateTables } from '@/types/database'
 
 interface EditPropertyPageProps {
   params: { id: string }
@@ -66,32 +66,34 @@ export default function EditPropertyPage({ params }: EditPropertyPageProps) {
     const supabase = createClient()
 
     try {
-      const { error } = await supabase
-        .from('properties')
-        .update({
-          title: formData.get('title') as string,
-          property_type: formData.get('property_type') as string,
-          status: formData.get('status') as string,
-          listing_type: formData.get('listing_type') as string,
-          price: parseInt(formData.get('price') as string),
-          is_negotiable: formData.get('is_negotiable') === 'on',
-          area: formData.get('area') ? parseFloat(formData.get('area') as string) : null,
-          frontage: formData.get('frontage') ? parseFloat(formData.get('frontage') as string) : null,
-          bedrooms: formData.get('bedrooms') ? parseInt(formData.get('bedrooms') as string) : null,
-          bathrooms: formData.get('bathrooms') ? parseInt(formData.get('bathrooms') as string) : null,
-          floors: formData.get('floors') ? parseInt(formData.get('floors') as string) : null,
-          district: formData.get('district') as string || null,
-          street: formData.get('street') as string || null,
-          address_detail: formData.get('address_detail') as string || null,
-          direction: formData.get('direction') as string || null,
-          legal_status: formData.get('legal_status') as string || null,
-          description: formData.get('description') as string || null,
-          source: formData.get('source') as string || null,
-          commission_rate: formData.get('commission_rate') ? parseFloat(formData.get('commission_rate') as string) : null,
-          notes: formData.get('notes') as string || null,
-          features: selectedFeatures.length > 0 ? selectedFeatures : null,
-          is_public: formData.get('is_public') === 'on',
-        })
+      const updateData: UpdateTables<'properties'> = {
+        title: formData.get('title') as string,
+        property_type: formData.get('property_type') as string,
+        status: formData.get('status') as string,
+        listing_type: formData.get('listing_type') as string,
+        price: parseInt(formData.get('price') as string),
+        is_negotiable: formData.get('is_negotiable') === 'on',
+        area: formData.get('area') ? parseFloat(formData.get('area') as string) : null,
+        frontage: formData.get('frontage') ? parseFloat(formData.get('frontage') as string) : null,
+        bedrooms: formData.get('bedrooms') ? parseInt(formData.get('bedrooms') as string) : null,
+        bathrooms: formData.get('bathrooms') ? parseInt(formData.get('bathrooms') as string) : null,
+        floors: formData.get('floors') ? parseInt(formData.get('floors') as string) : null,
+        district: formData.get('district') as string || null,
+        street: formData.get('street') as string || null,
+        address_detail: formData.get('address_detail') as string || null,
+        direction: formData.get('direction') as string || null,
+        legal_status: formData.get('legal_status') as string || null,
+        description: formData.get('description') as string || null,
+        source: formData.get('source') as string || null,
+        commission_rate: formData.get('commission_rate') ? parseFloat(formData.get('commission_rate') as string) : null,
+        notes: formData.get('notes') as string || null,
+        features: selectedFeatures.length > 0 ? selectedFeatures : null,
+        is_public: formData.get('is_public') === 'on',
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error } = await (supabase.from('properties') as any)
+        .update(updateData)
         .eq('id', params.id)
 
       if (error) throw error

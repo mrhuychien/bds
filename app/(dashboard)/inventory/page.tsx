@@ -3,16 +3,19 @@ import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/shared/page-header'
 import { EmptyState } from '@/components/shared/empty-state'
 import { PropertyCard } from '@/components/property/property-card'
+import type { Property } from '@/types/database'
 
 export default async function InventoryPage() {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  const { data: properties } = await supabase
+  const { data: propertiesData } = await supabase
     .from('properties')
     .select('*')
-    .eq('owner_id', user?.id)
+    .eq('owner_id', user?.id ?? '')
     .order('created_at', { ascending: false })
+
+  const properties = propertiesData as Property[] | null
 
   return (
     <div>

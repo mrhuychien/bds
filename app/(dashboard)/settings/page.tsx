@@ -27,7 +27,7 @@ export default function SettingsPage() {
           .eq('id', user.id)
           .single()
 
-        setProfile(data)
+        setProfile(data as Profile | null)
       }
       setLoading(false)
     }
@@ -44,8 +44,8 @@ export default function SettingsPage() {
     const supabase = createClient()
 
     try {
-      const { error } = await supabase
-        .from('profiles')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error } = await (supabase.from('profiles') as any)
         .update({
           full_name: formData.get('full_name') as string,
           phone: formData.get('phone') as string,

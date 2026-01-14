@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { formatPrice, formatArea, formatDate } from '@/lib/utils/format'
+import { formatPrice, formatDate } from '@/lib/utils/format'
 import { PROPERTY_TYPES, PROPERTY_STATUS, DIRECTIONS, LEGAL_STATUS, LISTING_TYPES } from '@/lib/constants'
+import type { Property } from '@/types/database'
 
 interface PropertyDetailPageProps {
   params: { id: string }
@@ -12,12 +13,18 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  const { data: property } = await supabase
+  if (!user) {
+    notFound()
+  }
+
+  const { data } = await supabase
     .from('properties')
     .select('*')
     .eq('id', params.id)
-    .eq('owner_id', user?.id)
+    .eq('owner_id', user.id)
     .single()
+
+  const property = data as Property | null
 
   if (!property) {
     notFound()

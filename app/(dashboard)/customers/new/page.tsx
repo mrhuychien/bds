@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { CUSTOMER_TYPES, CUSTOMER_PRIORITY, PROPERTY_TYPES, HCM_DISTRICTS } from '@/lib/constants'
+import type { InsertTables } from '@/types/database'
 
 export default function NewCustomerPage() {
   const router = useRouter()
@@ -55,7 +56,7 @@ export default function NewCustomerPage() {
         notes: formData.get('demand_notes') as string || null,
       }
 
-      const { error } = await supabase.from('customers').insert({
+      const customerData: InsertTables<'customers'> = {
         owner_id: user.id,
         full_name: formData.get('full_name') as string,
         phone: formData.get('phone') as string,
@@ -65,7 +66,10 @@ export default function NewCustomerPage() {
         source: formData.get('source') as string || null,
         notes: formData.get('notes') as string || null,
         demand: demand,
-      })
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error } = await (supabase.from('customers') as any).insert(customerData)
 
       if (error) throw error
 

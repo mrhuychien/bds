@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { PROPERTY_TYPES, DIRECTIONS, LEGAL_STATUS } from '@/lib/constants'
 import { formatPrice, formatArea } from '@/lib/utils/format'
+import type { Property } from '@/types/database'
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,12 +26,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Get property details
-    const { data: property, error: fetchError } = await supabase
+    const { data: propertyData, error: fetchError } = await supabase
       .from('properties')
       .select('*')
       .eq('id', propertyId)
       .eq('owner_id', user.id)
       .single()
+
+    const property = propertyData as Property | null
 
     if (fetchError || !property) {
       return NextResponse.json(
