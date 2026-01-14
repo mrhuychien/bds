@@ -1,6 +1,40 @@
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/shared/page-header'
 import { EmptyState } from '@/components/shared/empty-state'
+import { formatPhone, formatRelativeTime } from '@/lib/utils/format'
+import { CUSTOMER_PRIORITY, CUSTOMER_STATUS } from '@/lib/constants'
+import type { Customer } from '@/types/database'
+
+function CustomerCard({ customer }: { customer: Customer }) {
+  const priority = customer.priority as keyof typeof CUSTOMER_PRIORITY
+  const status = customer.status as keyof typeof CUSTOMER_STATUS
+  const priorityInfo = CUSTOMER_PRIORITY[priority]
+
+  return (
+    <Link href={`/customers/${customer.id}`}>
+      <div className="bg-card border rounded-lg p-4 hover:shadow-md transition-shadow">
+        <div className="flex items-start justify-between">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <h3 className="font-medium">{customer.full_name}</h3>
+              <span className={`px-1.5 py-0.5 text-xs rounded ${priorityInfo.bgColor} ${priorityInfo.textColor}`}>
+                {priorityInfo.label}
+              </span>
+            </div>
+            <p className="text-sm text-muted-foreground">{formatPhone(customer.phone)}</p>
+          </div>
+          <span className="text-xs text-muted-foreground">{CUSTOMER_STATUS[status]}</span>
+        </div>
+        {customer.last_contact_at && (
+          <p className="text-xs text-muted-foreground mt-2">
+            Liên hệ: {formatRelativeTime(customer.last_contact_at)}
+          </p>
+        )}
+      </div>
+    </Link>
+  )
+}
 
 export default async function CustomersPage() {
   const supabase = createClient()
@@ -18,19 +52,21 @@ export default async function CustomersPage() {
         title="Khách hàng"
         description={`${customers?.length || 0} khách hàng`}
         action={
-          <button className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+          <Link
+            href="/customers/new"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
             + Thêm mới
-          </button>
+          </Link>
         }
       />
 
       <div className="p-4">
         {customers && customers.length > 0 ? (
           <div className="space-y-3">
-            {/* Customer list will be implemented */}
-            <p className="text-muted-foreground text-sm">
-              Tính năng đang phát triển...
-            </p>
+            {customers.map((customer) => (
+              <CustomerCard key={customer.id} customer={customer} />
+            ))}
           </div>
         ) : (
           <EmptyState
@@ -42,9 +78,12 @@ export default async function CustomersPage() {
             title="Chưa có khách hàng nào"
             description="Thêm khách hàng để theo dõi nhu cầu và lịch sử tương tác"
             action={
-              <button className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+              <Link
+                href="/customers/new"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              >
                 Thêm khách hàng đầu tiên
-              </button>
+              </Link>
             }
           />
         )}
