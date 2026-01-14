@@ -71,10 +71,12 @@ function LoginForm() {
 
     try {
       const supabase = createClient()
+      // Use env variable for production, fallback to window.location.origin for dev
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${baseUrl}/auth/callback`,
         },
       })
 

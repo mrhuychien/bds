@@ -24,6 +24,8 @@ export default function RegisterPage() {
 
     try {
       const supabase = createClient()
+      // Use env variable for production, fallback to window.location.origin for dev
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin
       const { error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
@@ -32,7 +34,7 @@ export default function RegisterPage() {
             full_name: formData.fullName,
             phone: formData.phone,
           },
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${baseUrl}/auth/callback`,
         },
       })
 
@@ -63,10 +65,12 @@ export default function RegisterPage() {
 
     try {
       const supabase = createClient()
+      // Use env variable for production, fallback to window.location.origin for dev
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${baseUrl}/auth/callback`,
         },
       })
 
