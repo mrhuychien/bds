@@ -5,7 +5,15 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { PROPERTY_TYPES, LISTING_TYPES, DIRECTIONS, LEGAL_STATUS, HCM_DISTRICTS } from '@/lib/constants'
+import { PropertyImageUpload } from '@/components/property/property-image-upload'
 import type { InsertTables } from '@/types/database'
+
+interface PropertyImage {
+  id: string
+  url: string
+  watermarkedUrl?: string
+  isUploading?: boolean
+}
 
 export default function NewPropertyPage() {
   const router = useRouter()
@@ -13,6 +21,7 @@ export default function NewPropertyPage() {
   const [error, setError] = useState('')
 
   // Form state
+  const [images, setImages] = useState<PropertyImage[]>([])
   const [listingType, setListingType] = useState<'sale' | 'rent'>('sale')
   const [propertyType, setPropertyType] = useState('nha_pho')
   const [priceUnit, setPriceUnit] = useState('Tỷ')
@@ -46,6 +55,11 @@ export default function NewPropertyPage() {
         price = price * 1000000
       }
 
+      // Get image URLs
+      const uploadedImages = images.filter(img => !img.isUploading)
+      const imageUrls = uploadedImages.map(img => img.url)
+      const watermarkedUrls = uploadedImages.map(img => img.watermarkedUrl || img.url)
+
       const propertyData: InsertTables<'properties'> = {
         owner_id: user.id,
         title: formData.get('title') as string,
@@ -67,6 +81,9 @@ export default function NewPropertyPage() {
         source: formData.get('source') as string || null,
         commission_rate: formData.get('commission_rate') ? parseFloat(formData.get('commission_rate') as string) : null,
         notes: formData.get('notes') as string || null,
+        images: imageUrls.length > 0 ? imageUrls : null,
+        watermarked_images: watermarkedUrls.length > 0 ? watermarkedUrls : null,
+        thumbnail_url: watermarkedUrls[0] || null,
       }
 
       const { error } = await (supabase.from('properties') as any).insert(propertyData)
@@ -108,22 +125,11 @@ export default function NewPropertyPage() {
           )}
 
           {/* Image Upload Section */}
-          <section>
-            <div className="flex items-center justify-between mb-3 px-1">
-              <h3 className="text-sm font-bold uppercase text-slate-400 tracking-wider">Hình ảnh (0)</h3>
-              <button type="button" className="text-xs font-semibold text-primary">Sắp xếp</button>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              <button
-                type="button"
-                className="aspect-square rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 flex flex-col items-center justify-center text-primary active:scale-95 transition-transform"
-              >
-                <span className="material-symbols-outlined text-3xl mb-1">add_a_photo</span>
-                <span className="text-[10px] font-bold uppercase">Thêm ảnh</span>
-              </button>
-            </div>
-            <p className="text-xs text-slate-400 mt-2 px-1 text-center">Nhấn giữ để sắp xếp vị trí ảnh</p>
-          </section>
+          <PropertyImageUpload
+            value={images}
+            onChange={setImages}
+            maxFiles={10}
+          />
 
           {/* Basic Info Section */}
           <section className="bg-white rounded-[20px] p-5 shadow-soft space-y-5">
