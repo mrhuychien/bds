@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { PROPERTY_TYPES, DIRECTIONS, LEGAL_STATUS } from '@/lib/constants'
+import { DIRECTIONS, LEGAL_STATUS } from '@/lib/constants'
 import {
   MicrositeHero,
   PropertyQuickInfo,
@@ -55,7 +55,6 @@ export default async function MicrositePage({ params }: MicrositePageProps) {
   }
 
   const agent = property.profiles as AgentProfile
-  const propertyType = property.property_type as keyof typeof PROPERTY_TYPES
   const direction = property.direction as keyof typeof DIRECTIONS
   const legalStatus = property.legal_status as keyof typeof LEGAL_STATUS
 

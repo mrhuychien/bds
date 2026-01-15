@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { formatPhone, formatDate, formatRelativeTime, formatPrice } from '@/lib/utils/format'
-import { CUSTOMER_TYPES, CUSTOMER_STATUS, CUSTOMER_PRIORITY, PROPERTY_TYPES } from '@/lib/constants'
+import { CUSTOMER_TYPES, PROPERTY_TYPES } from '@/lib/constants'
 import type { Customer, CustomerInteraction } from '@/types/database'
 
 interface CustomerDetailPageProps {
@@ -41,9 +41,6 @@ export default async function CustomerDetailPage({ params }: CustomerDetailPageP
   const interactions = interactionsData as CustomerInteraction[] | null
 
   const customerType = customer.customer_type as keyof typeof CUSTOMER_TYPES
-  const status = customer.status as keyof typeof CUSTOMER_STATUS
-  const priority = customer.priority as keyof typeof CUSTOMER_PRIORITY
-  const priorityInfo = CUSTOMER_PRIORITY[priority]
   const demand = customer.demand as {
     property_types?: string[]
     districts?: string[]

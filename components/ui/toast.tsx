@@ -115,8 +115,7 @@ function ToastItem({
 }
 
 // Helper function for quick toasts
-export function toast(options: Omit<Toast, 'id'>) {
+export function toast(_options: Omit<Toast, 'id'>) {
   // This is a fallback for when not in provider context
   // Real implementation should use useToast hook
-  console.log('Toast:', options)
 }
