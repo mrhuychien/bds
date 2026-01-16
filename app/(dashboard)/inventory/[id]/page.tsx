@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { formatPrice, formatDate } from '@/lib/utils/format'
 import { PROPERTY_TYPES, PROPERTY_STATUS, DIRECTIONS, LEGAL_STATUS, LISTING_TYPES } from '@/lib/constants'
+import { PropertyMicrositeActions } from '@/components/property/property-microsite-actions'
 import type { Property } from '@/types/database'
 
 interface PropertyDetailPageProps {
@@ -264,40 +265,13 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
           </section>
         )}
 
-        {/* Microsite Stats */}
-        <section className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
-          <div className="p-4 border-b border-border flex items-center justify-between">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Microsite</h3>
-            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-              property.is_public
-                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
-                : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
-            }`}>
-              {property.is_public ? 'Đã công khai' : 'Chưa công khai'}
-            </span>
-          </div>
-          <div className="p-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary">visibility</span>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{property.microsite_views || 0}</p>
-                  <p className="text-xs text-muted-foreground">Lượt xem</p>
-                </div>
-              </div>
-            </div>
-            {property.is_public && property.slug && (
-              <div className="bg-muted rounded-xl p-3">
-                <p className="text-xs text-muted-foreground mb-1">Link chia sẻ:</p>
-                <code className="text-xs break-all">
-                  {process.env.NEXT_PUBLIC_APP_URL || ''}/p/{property.slug}
-                </code>
-              </div>
-            )}
-          </div>
-        </section>
+        {/* Landing Page / Microsite */}
+        <PropertyMicrositeActions
+          propertyId={property.id}
+          slug={property.slug}
+          isPublic={property.is_public || false}
+          views={property.microsite_views || 0}
+        />
       </div>
 
       {/* Bottom Actions */}

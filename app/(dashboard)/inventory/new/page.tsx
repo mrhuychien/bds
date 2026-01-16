@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { PROPERTY_TYPES, LISTING_TYPES, DIRECTIONS, LEGAL_STATUS, HCM_DISTRICTS } from '@/lib/constants'
 import { PropertyImageUpload } from '@/components/property/property-image-upload'
+import { generatePropertySlug } from '@/lib/utils/slug'
 import type { InsertTables } from '@/types/database'
 
 interface PropertyImage {
@@ -60,9 +61,14 @@ export default function NewPropertyPage() {
       const imageUrls = uploadedImages.map(img => img.url)
       const watermarkedUrls = uploadedImages.map(img => img.watermarkedUrl || img.url)
 
+      const title = formData.get('title') as string
+      const slug = generatePropertySlug(title)
+
       const propertyData: InsertTables<'properties'> = {
         owner_id: user.id,
-        title: formData.get('title') as string,
+        title: title,
+        slug: slug,
+        is_public: true, // Default to public so landing page is accessible
         property_type: propertyType,
         listing_type: listingType,
         price: price,
