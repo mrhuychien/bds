@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { formatPrice, formatDate } from '@/lib/utils/format'
 import { PROPERTY_TYPES, PROPERTY_STATUS, DIRECTIONS, LEGAL_STATUS, LISTING_TYPES } from '@/lib/constants'
 import { PropertyMicrositeActions } from '@/components/property/property-microsite-actions'
+import { PropertyMap } from '@/components/property/property-map'
 import type { Property } from '@/types/database'
 
 interface PropertyDetailPageProps {
@@ -133,6 +134,15 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
               .filter(Boolean)
               .join(', ')}
           </div>
+        )}
+
+        {/* Map */}
+        {property.latitude && property.longitude && (
+          <PropertyMap
+            latitude={property.latitude}
+            longitude={property.longitude}
+            title={property.title}
+          />
         )}
 
         {/* Quick Stats */}

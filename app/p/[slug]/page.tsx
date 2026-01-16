@@ -7,6 +7,7 @@ import {
   PropertyFeatures,
   AgentFooter,
 } from '@/components/microsite'
+import { PropertyMap } from '@/components/property/property-map'
 import type { Property } from '@/types/database'
 
 interface AgentProfile {
@@ -136,6 +137,18 @@ export default async function MicrositePage({ params }: MicrositePageProps) {
                 </>
               )}
             </p>
+          </section>
+        )}
+
+        {/* Map Section */}
+        {property.latitude && property.longitude && (
+          <section className="mb-8">
+            <h3 className="text-lg font-bold mb-3">Vị trí</h3>
+            <PropertyMap
+              latitude={property.latitude}
+              longitude={property.longitude}
+              title={property.title}
+            />
           </section>
         )}
 

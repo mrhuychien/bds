@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { PROPERTY_TYPES, LISTING_TYPES, DIRECTIONS, LEGAL_STATUS, HCM_DISTRICTS } from '@/lib/constants'
 import { PropertyImageUpload } from '@/components/property/property-image-upload'
+import { LocationPicker } from '@/components/property/location-picker'
 import { generatePropertySlug } from '@/lib/utils/slug'
 import type { InsertTables } from '@/types/database'
 
@@ -31,6 +32,7 @@ export default function NewPropertyPage() {
   const [bathrooms, setBathrooms] = useState(2)
   const [direction, setDirection] = useState('')
   const [description, setDescription] = useState('')
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -81,6 +83,8 @@ export default function NewPropertyPage() {
         district: formData.get('district') as string,
         ward: formData.get('ward') as string || null,
         street: formData.get('street') as string,
+        latitude: location?.lat || null,
+        longitude: location?.lng || null,
         direction: direction || null,
         legal_status: formData.get('legal_status') as string || null,
         description: description || null,
@@ -383,6 +387,15 @@ export default function NewPropertyPage() {
                   className="w-full bg-gray-50 border-0 rounded-xl px-4 py-3.5 text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 ring-1 ring-gray-100"
                 />
               </div>
+            </div>
+
+            {/* Map Location Picker */}
+            <div className="pt-2 border-t border-gray-100">
+              <label className="text-xs font-bold text-slate-500 ml-1 mb-2 block">Định vị trên bản đồ</label>
+              <LocationPicker
+                value={location}
+                onChange={setLocation}
+              />
             </div>
           </section>
 
